@@ -168,9 +168,10 @@ button{font-family:inherit;cursor:pointer;}
 
 /* ── Star Wars Crawl ── */
 .crawl-wrap{position:relative;height:189px;overflow:hidden;margin-top:36px;}
-.crawl-wrap::after{content:'';position:absolute;top:0;left:0;right:0;height:68%;background:linear-gradient(to bottom,#15161D 0%,transparent 100%);pointer-events:none;z-index:2;}
-.crawl-stage{position:absolute;inset:0;}
-.crawl-inner{position:absolute;top:0;width:90%;left:5%;text-align:center;animation:swcrawl var(--crawl-duration,120s) linear infinite;}
+.crawl-wrap::before{content:'';position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(90deg,rgba(21,22,29,.9),transparent 16%,transparent 84%,rgba(21,22,29,.9));}
+.crawl-wrap::after{content:'';position:absolute;top:0;left:0;right:0;height:68%;background:linear-gradient(to bottom,#15161D 0%,transparent 100%);pointer-events:none;z-index:3;}
+.crawl-stage{position:absolute;inset:0;clip-path:polygon(19% 0,81% 0,100% 100%,0 100%);}
+.crawl-inner{position:absolute;top:0;width:112%;left:-6%;text-align:center;animation:swcrawl var(--crawl-duration,120s) linear infinite;}
 .crawl-inner .c-title{font-size:22px;font-weight:900;letter-spacing:.1em;color:#fff;margin:0 0 1.2em;}
 .crawl-inner .c-h2{font-size:18px;font-weight:700;letter-spacing:.06em;color:#fff;margin:1.6em 0 .5em;}
 .crawl-inner .c-h3{font-size:15px;font-weight:600;color:#fff;margin:1em 0 .3em;}
