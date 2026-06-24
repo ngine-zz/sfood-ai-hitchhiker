@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>에쓰푸드 디자인 시스템 v2.0</title>
+<style>
+  /* ────────────────────────────────────────────────
+     COLOR TOKENS
+  ──────────────────────────────────────────────── */
+  :root {
+    /* Primary — S-Red */
+    --red:          #D5413E;
+    --red-bright:   #D73135;
+    --red-dark:     #A83230;
+    --red-light:    #E47674;
+    --red-pale:     #F9DADA;
+
+    /* Complement Background */
+    --cream:        #FCF0D6;   /* 보색 배경 */
+    --bg-light:     #F4EFE6;   /* 연한 배경 */
+    --bg-dark:      #2B2B2B;   /* 어두운 배경 */
+
+    /* Warm Neutral — 레드 팔레트 온기에 맞춘 웜 그레이 */
+    --white:        #FFFFFF;
+    --gray-50:      #F4EFE6;   /* = bg-light */
+    --gray-100:     #EAE3D9;
+    --gray-200:     #D4C9BC;
+    --gray-400:     #9E9388;
+    --gray-600:     #615850;
+    --gray-800:     #332D28;
+    --black:        #2B2B2B;   /* = bg-dark */
+
+    /* Warm Gold — cream 팔레트 기반 세컨더리 */
+    --gold-dark:    #8B5C1A;
+    --gold:         #C4882A;
+    --gold-light:   #DFBA5E;
+    --gold-pale:    #FCF0D6;   /* = cream */
+
+    /* Semantic */
+    --success:      #4E7A52;   /* 웜 어스 그린 */
+    --warning:      #C47828;   /* 웜 앰버 */
+    --error:        #A83230;   /* = red-dark */
+    --info:         #3A6A8C;   /* 웜 스틸 블루 */
+
+    /* Border Radius Scale */
+    --r-xs:   4px;    /* 아이콘버튼, 마이크로 배지 */
+    --r-sm:   6px;    /* 태그, 칩, 인라인 배지 */
+    --r-md:   10px;   /* 입력 필드, 버튼, 소형 카드 */
+    --r-lg:   14px;   /* 일반 카드, 패널 */
+    --r-xl:   20px;   /* 대형 카드, 모달 */
+    --r-2xl:  28px;   /* 히어로 섹션, 대형 컨테이너 */
+    --r-pill: 9999px; /* 필 버튼, 아바타 */
+
+    /* Shadow (웜 레드 기반) */
+    --shadow-sm:  0 1px 4px rgba(43,28,28,0.10);
+    --shadow-md:  0 3px 12px rgba(43,28,28,0.12);
+    --shadow-lg:  0 8px 28px rgba(43,28,28,0.14);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Malgun Gothic', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
+    background: var(--bg-light);
+    color: var(--gray-800);
+    line-height: 1.75;
+    font-size: 14px;
+  }
+
+  /* ── NAV ── */
+  nav {
+    background: var(--bg-dark);
+    color: white;
+    padding: 0 40px;
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 14px rgba(0,0,0,0.3);
+  }
+  nav .logo {
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    color: white;
+    padding: 18px 0;
+    border-right: 1px solid rgba(255,255,255,0.12);
+    padding-right: 28px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  nav .logo .dot { color: var(--red); font-size: 22px; line-height: 1; }
+  nav a {
+    color: rgba(255,255,255,0.6);
+    text-decoration: none;
+    font-size: 12px;
+    padding: 18px 4px;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s;
+    font-weight: 500;
+  }
+  nav a:hover { color: white; border-bottom-color: var(--red); }
+
+  /* ── HERO ── */
+  .hero {
+    background: var(--bg-dark);
+    color: white;
+    padding: 64px 40px 72px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -80px; right: -80px;
+    width: 420px; height: 420px;
+    background: radial-gradient(circle, rgba(213,65,62,0.18) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--red) 0%, var(--gold) 60%, var(--cream) 100%);
+  }
+  .hero-inner { max-width: 1280px; margin: 0 auto; position: relative; }
+  .hero .overline {
+    font-size: 11px; font-weight: 600; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--red-light); margin-bottom: 12px;
+  }
+  .hero h1 {
+    font-size: 44px; font-weight: 700; letter-spacing: -0.02em;
+    margin-bottom: 14px; line-height: 1.1;
+  }
+  .hero h1 span { color: var(--red); }
+  .hero .mission {
+    font-size: 18px; font-weight: 600; color: var(--gold-light);
+    margin-bottom: 12px; letter-spacing: 0.02em;
+  }
+  .hero p {
+    font-size: 14px; color: rgba(255,255,255,0.55);
+    max-width: 520px; line-height: 1.75;
+  }
+  .hero-badges { display: flex; gap: 8px; margin-top: 24px; flex-wrap: wrap; }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 5px;
+    border-radius: var(--r-pill);
+    font-size: 11px; font-weight: 600; padding: 5px 12px;
+    letter-spacing: 0.03em;
+  }
+  .hero-badge.red { background: rgba(213,65,62,0.18); color: var(--red-light); border: 1px solid rgba(213,65,62,0.35); }
+  .hero-badge.gold { background: rgba(196,136,42,0.18); color: var(--gold-light); border: 1px solid rgba(196,136,42,0.3); }
+  .hero-badge.gray { background: rgba(255,255,255,0.07); color: rgba(255,255,255,0.5); border: 1px solid rgba(255,255,255,0.12); }
+
+  /* ── LAYOUT ── */
+  main { max-width: 1280px; margin: 0 auto; padding: 60px 40px; }
+  section { margin-bottom: 80px; }
+
+  .section-label {
+    font-size: 11px; font-weight: 600; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--red); margin-bottom: 6px;
+  }
+  h2.section-title {
+    font-size: 26px; font-weight: 700; color: var(--gray-800);
+    margin-bottom: 4px; line-height: 1.2;
+  }
+  .section-desc { font-size: 14px; color: var(--gray-600); margin-bottom: 28px; max-width: 640px; }
+  .divider { height: 1px; background: var(--gray-200); margin-bottom: 32px; }
+
+  /* ── GRID ── */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+
+  /* ── CARD BASE ── */
+  .card {
+    background: white;
+    border: 1px solid var(--gray-100);
+    border-radius: var(--r-lg);
+    padding: 24px;
+    box-shadow: var(--shadow-sm);
+  }
+
+  /* ── CONCEPT CARDS ── */
+  .concept-card {
+    background: white;
+    border: 1px solid var(--gray-100);
+    border-radius: var(--r-lg);
+    padding: 28px;
+    border-top: 4px solid var(--red);
+    box-shadow: var(--shadow-sm);
+  }
+  .concept-card.gold { border-top-color: var(--gold); }
+  .concept-card.green { border-top-color: var(--success); }
+  .concept-card h3 { font-size: 16px; font-weight: 700; color: var(--gray-800); margin-bottom: 10px; }
+  .concept-card p { font-size: 13px; color: var(--gray-600); line-height: 1.7; }
+  .concept-icon { font-size: 28px; margin-bottom: 14px; }
+
+  /* ── COLOR SWATCHES ── */
+  .color-group { margin-bottom: 32px; }
+  .color-group-label {
+    font-size: 11px; font-weight: 600; letter-spacing: 0.06em;
+    text-transform: uppercase; color: var(--gray-400); margin-bottom: 12px;
+  }
+  .swatches { display: flex; gap: 12px; flex-wrap: wrap; }
+  .swatch { width: 108px; border-radius: var(--r-md); overflow: hidden; box-shadow: var(--shadow-sm); }
+  .swatch-color { height: 72px; }
+  .swatch-info { background: white; padding: 8px 10px; }
+  .swatch-name { font-size: 11px; font-weight: 600; color: var(--gray-800); display: block; }
+  .swatch-hex { font-size: 11px; color: var(--gray-400); font-family: Consolas, monospace; }
+  .swatch-main { outline: 3px solid var(--red); outline-offset: -3px; }
+
+  /* ── TYPOGRAPHY ── */
+  .type-row {
+    display: grid; grid-template-columns: 180px 1fr;
+    align-items: start; gap: 24px;
+    padding: 20px 0; border-bottom: 1px solid var(--gray-100);
+  }
+  .type-token {
+    font-size: 11px; font-weight: 600; font-family: Consolas, monospace;
+    color: var(--red); background: var(--red-pale);
+    padding: 2px 7px; border-radius: var(--r-sm);
+    display: inline-block; margin-bottom: 5px;
+  }
+  .type-spec { font-size: 11px; color: var(--gray-400); line-height: 1.6; }
+  .type-sample { color: var(--gray-800); }
+
+  .display-sample  { font-size: 48px; font-weight: 700; line-height: 1.1; letter-spacing: -0.02em; color: var(--red); }
+  .h1-sample       { font-size: 36px; font-weight: 700; line-height: 1.2; letter-spacing: -0.01em; }
+  .h2-sample       { font-size: 28px; font-weight: 600; line-height: 1.25; }
+  .h3-sample       { font-size: 22px; font-weight: 600; line-height: 1.3; }
+  .h4-sample       { font-size: 18px; font-weight: 500; line-height: 1.4; }
+  .body-lg-sample  { font-size: 16px; font-weight: 400; line-height: 1.7; }
+  .body-sample     { font-size: 14px; font-weight: 400; line-height: 1.75; }
+  .caption-sample  { font-size: 12px; font-weight: 400; line-height: 1.6; color: var(--gray-600); }
+  .overline-sample { font-size: 11px; font-weight: 600; line-height: 1.4; letter-spacing: 0.1em; text-transform: uppercase; color: var(--red); }
+
+  /* ── BUTTONS ── */
+  .btn-showcase { display: flex; gap: 12px; flex-wrap: wrap; align-items: flex-start; }
+  .btn-item { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+  .btn {
+    padding: 10px 22px; border-radius: var(--r-md);
+    font-size: 14px; font-weight: 600; font-family: inherit;
+    cursor: pointer; border: 2px solid transparent;
+    transition: all 0.15s; letter-spacing: 0.01em;
+  }
+  .btn-sm { padding: 7px 14px; font-size: 12px; border-radius: var(--r-sm); }
+  .btn-lg { padding: 13px 28px; font-size: 16px; border-radius: var(--r-lg); }
+  .btn-primary   { background: var(--red); color: white; }
+  .btn-primary:hover { background: var(--red-bright); }
+  .btn-secondary { background: transparent; color: var(--red); border-color: var(--red); }
+  .btn-secondary:hover { background: var(--red-pale); }
+  .btn-gold      { background: var(--gold); color: white; }
+  .btn-gold:hover { background: var(--gold-dark); }
+  .btn-dark      { background: var(--bg-dark); color: white; }
+  .btn-pill      { background: var(--red); color: white; border-radius: var(--r-pill); }
+  .btn-ghost     { background: transparent; color: var(--gray-600); border-color: var(--gray-200); }
+  .btn-disabled  { background: var(--gray-100); color: var(--gray-400); cursor: not-allowed; }
+  .btn-label     { font-size: 10px; color: var(--gray-400); text-align: center; font-family: Consolas, monospace; }
+
+  /* ── RADIUS SHOWCASE ── */
+  .radius-row { display: flex; align-items: center; gap: 16px; margin-bottom: 14px; flex-wrap: wrap; }
+  .radius-box {
+    background: var(--red);
+    color: white;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; font-weight: 600;
+    flex-shrink: 0;
+  }
+  .radius-info { font-size: 12px; color: var(--gray-600); }
+  .radius-token { font-family: Consolas, monospace; font-size: 11px; color: var(--red); background: var(--red-pale); padding: 2px 6px; border-radius: var(--r-sm); margin-right: 6px; }
+
+  /* ── TABLE ── */
+  .ds-table { width: 100%; border-collapse: separate; border-spacing: 0; font-size: 13px; border-radius: var(--r-md); overflow: hidden; box-shadow: var(--shadow-sm); }
+  .ds-table th { background: var(--red); color: white; padding: 11px 14px; text-align: left; font-weight: 600; font-size: 12px; letter-spacing: 0.02em; }
+  .ds-table th:first-child { border-top-left-radius: 0; }
+  .ds-table th:last-child { border-top-right-radius: 0; }
+  .ds-table td { padding: 11px 14px; border-bottom: 1px solid var(--gray-100); color: var(--gray-800); background: white; }
+  .ds-table tr:nth-child(even) td { background: var(--gray-50); }
+  .ds-table tr:last-child td { border-bottom: none; }
+  .ds-table .highlight td { background: var(--cream); }
+
+  /* ── CALLOUT ── */
+  .callout {
+    padding: 14px 18px; border-radius: var(--r-md);
+    border-left: 4px solid; margin-bottom: 10px;
+    font-size: 13px; line-height: 1.65;
+  }
+  .callout-info    { border-color: var(--info);    background: #EFF5FA; color: #1E3D52; }
+  .callout-warning { border-color: var(--warning); background: var(--cream); color: #5a3405; }
+  .callout-error   { border-color: var(--red);     background: var(--red-pale); color: #5a1a1a; }
+  .callout-success { border-color: var(--success); background: #EBF3EC; color: #1e3e22; }
+
+  /* ── SPACING ── */
+  .spacing-row { display: flex; align-items: center; gap: 16px; margin-bottom: 10px; }
+  .spacing-block { background: var(--red); border-radius: var(--r-xs); height: 24px; flex-shrink: 0; }
+  .spacing-label { font-size: 12px; color: var(--gray-600); }
+  .spacing-token { font-family: Consolas, monospace; font-size: 11px; color: var(--red); background: var(--red-pale); padding: 1px 5px; border-radius: var(--r-xs); margin-right: 6px; }
+
+  /* ── DO / DON'T ── */
+  .do-dont { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .do-card  { background: #EBF3EC; border: 1px solid #b2d4b8; border-radius: var(--r-lg); padding: 24px; }
+  .dont-card{ background: var(--red-pale); border: 1px solid #e8b5b5; border-radius: var(--r-lg); padding: 24px; }
+  .do-card h4  { color: var(--success); font-size: 14px; margin-bottom: 14px; }
+  .dont-card h4{ color: var(--red-dark); font-size: 14px; margin-bottom: 14px; }
+  .rule-item { display: flex; align-items: flex-start; gap: 8px; font-size: 13px; margin-bottom: 10px; line-height: 1.6; }
+
+  /* ── SLIDE PREVIEW ── */
+  .slide-preview { aspect-ratio: 16/9; border-radius: var(--r-lg); overflow: hidden; box-shadow: var(--shadow-lg); display: flex; flex-direction: column; }
+  .slide-cover { background: var(--bg-dark); padding: 40px 48px; flex: 1; display: flex; flex-direction: column; justify-content: center; position: relative; overflow: hidden; }
+  .slide-cover::before { content: ''; position: absolute; top: -60px; right: -60px; width: 260px; height: 260px; background: radial-gradient(circle, rgba(213,65,62,0.22) 0%, transparent 70%); }
+  .slide-cover .ov { font-size: 9px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--red-light); margin-bottom: 10px; }
+  .slide-cover h3 { font-size: 19px; font-weight: 700; color: white; margin-bottom: 8px; line-height: 1.25; position: relative; }
+  .slide-cover p { font-size: 11px; color: rgba(255,255,255,0.45); position: relative; }
+  .slide-bar { height: 4px; background: linear-gradient(90deg, var(--red) 0%, var(--gold) 100%); }
+  .slide-content { background: white; padding: 24px 32px; flex: 1; display: flex; flex-direction: column; justify-content: center; }
+  .slide-content .slide-title { font-size: 14px; font-weight: 700; color: var(--gray-800); margin-bottom: 14px; padding-bottom: 8px; border-bottom: 2px solid var(--red); }
+  .slide-content ul { list-style: none; }
+  .slide-content ul li { font-size: 10px; color: var(--gray-600); padding: 3px 0 3px 13px; position: relative; line-height: 1.5; }
+  .slide-content ul li::before { content: '—'; position: absolute; left: 0; color: var(--red); font-weight: 600; }
+  .slide-footer { background: var(--gray-50); border-top: 1px solid var(--gray-100); padding: 7px 32px; display: flex; justify-content: space-between; align-items: center; }
+  .slide-footer span { font-size: 8px; color: var(--gray-400); }
+
+  /* ── CONTRAST PREVIEW ── */
+  .contrast-cell { padding: 12px 16px; font-weight: 600; font-size: 13px; border-radius: var(--r-sm); }
+
+  /* ── FOOTER ── */
+  footer { background: var(--bg-dark); color: rgba(255,255,255,0.45); text-align: center; padding: 32px 40px; font-size: 12px; line-height: 1.8; }
+  footer strong { color: rgba(255,255,255,0.75); }
+  footer .mission-footer { color: var(--red-light); font-weight: 600; font-size: 14px; margin-bottom: 8px; letter-spacing: 0.05em; }
+
+  @media (max-width: 768px) {
+    nav { gap: 14px; padding: 0 16px; }
+    main { padding: 40px 16px; }
+    .hero { padding: 44px 16px 56px; }
+    .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+    .do-dont { grid-template-columns: 1fr; }
+    .type-row { grid-template-columns: 1fr; }
+    .hero h1 { font-size: 30px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo"><span class="dot">●</span> SFOOD</div>
+  <a href="#concept">컨셉</a>
+  <a href="#color">컬러</a>
+  <a href="#typography">타이포</a>
+  <a href="#radius">Radius</a>
+  <a href="#components">컴포넌트</a>
+  <a href="#spacing">간격</a>
+  <a href="#donts">주의사항</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="overline">에쓰푸드 (S-Food Co., Ltd.) · Design System</div>
+    <h1>통합 <span>디자인 시스템</span></h1>
+    <div class="mission">"Better Food, Better World."</div>
+    <p>단백질·육가공·소고기 전문 기업으로서의 활력과 신뢰를 담은<br>에쓰푸드의 공식 시각 언어 가이드입니다.</p>
+    <div class="hero-badges">
+      <span class="hero-badge red">● Health &amp; Vitality</span>
+      <span class="hero-badge gold">● Trust &amp; Quality</span>
+      <span class="hero-badge gray">VERSION 2.0 · 2026-06-22</span>
+    </div>
+  </div>
+</div>
+
+<main>
+
+  <!-- 1. CONCEPT -->
+  <section id="concept">
+    <div class="section-label">01 · Brand Concept</div>
+    <h2 class="section-title">브랜드 컨셉</h2>
+    <p class="section-desc">레드의 활력, 크림 골드의 온기, 다크 배경의 신뢰감이 조화를 이루는 디자인 언어입니다.</p>
+    <div class="divider"></div>
+
+    <div style="background: var(--bg-dark); color: white; padding: 28px 32px; border-radius: var(--r-xl); margin-bottom: 24px; position: relative; overflow: hidden;">
+      <div style="position: absolute; top: -40px; right: -40px; width: 200px; height: 200px; background: radial-gradient(circle, rgba(213,65,62,0.2) 0%, transparent 70%);"></div>
+      <div style="font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--red-light); margin-bottom: 8px;">Mission</div>
+      <div style="font-size: 28px; font-weight: 700; letter-spacing: -0.01em; position: relative;">Better Food, <span style="color: var(--red);">Better World.</span></div>
+      <div style="font-size: 13px; color: rgba(255,255,255,0.5); margin-top: 10px; position: relative;">건강한 식품으로 더 나은 세상을 만드는 에쓰푸드의 약속</div>
+    </div>
+
+    <div class="grid-3">
+      <div class="concept-card">
+        <div class="concept-icon">🥩</div>
+        <h3>Vitality — 활력</h3>
+        <p>레드 컬러가 상징하는 활력과 에너지. 단백질·육가공 제품의 풍부함과 건강한 힘을 표현합니다.</p>
+      </div>
+      <div class="concept-card gold">
+        <div class="concept-icon">🌾</div>
+        <h3>Warmth — 온기</h3>
+        <p>크림 골드의 따뜻함. 자연 재료에서 오는 풍미, 오랜 장인 정신, 친근한 식탁의 온도를 담습니다.</p>
+      </div>
+      <div class="concept-card green">
+        <div class="concept-icon">🛡️</div>
+        <h3>Trust — 신뢰</h3>
+        <p>다크 배경과 정돈된 구조가 만드는 신뢰감. 품질과 안전에 대한 에쓰푸드의 변함없는 약속입니다.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. COLOR -->
+  <section id="color">
+    <div class="section-label">02 · Color System</div>
+    <h2 class="section-title">심볼릭 컬러</h2>
+    <p class="section-desc">모든 컬러는 아래 팔레트 토큰에서만 선택합니다. ★ 표시가 대표 컬러입니다.</p>
+    <div class="divider"></div>
+
+    <div class="color-group">
+      <div class="color-group-label">Primary — S-Red (활력 · 브랜드 아이덴티티)</div>
+      <div class="swatches">
+        <div class="swatch">
+          <div class="swatch-color" style="background:#A83230"></div>
+          <div class="swatch-info"><span class="swatch-name">Red Dark</span><span class="swatch-hex">#A83230</span></div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color swatch-main" style="background:#D5413E"></div>
+          <div class="swatch-info"><span class="swatch-name">S-Red ★</span><span class="swatch-hex">#D5413E</span></div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background:#D73135"></div>
+          <div class="swatch-info"><span class="swatch-name">Red Bright</span><span class="swatch-hex">#D73135</span></div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background:#E47674"></div>
+          <div class="swatch-info"><span class="swatch-name">Red Light</span><span class="swatch-hex">#E47674</span></div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background:#F9DADA"></div>
+          <div class="swatch-info"><span class="swatch-name">Red Pale</span><span class="swatch-hex">#F9DADA</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="color-group">
+      <div class="color-group-label">Secondary — Warm Gold (온기 · 보색 계열)</div>
+      <div class="swatches">
+        <div class="swatch">
+          <div class="swatch-color" style="background:#8B5C1A"></div>
+          <div class="swatch-info"><span class="swatch-name">Gold Dark</span><span class="swatch-hex">#8B5C1A</span></div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background:#C4882A"></div>
+          <div class="swatch-info"><span class="swatch-name">Gold</span><span class="swatch-hex">#C4882A</span></div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background:#DFBA5E"></div>
+          <div class="swatch-info"><span class="swatch-name">Gold Light</span><span class="swatch-hex">#DFBA5E</span></div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background:#FCF0D6; border: 1px solid #e8d8b0;"></div>
+          <div class="swatch-info"><span class="swatch-name">Cream ★</span><span class="swatch-hex">#FCF0D6</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="color-group">
+      <div class="color-group-label">Background</div>
+      <div class="swatches">
+        <div class="swatch">
+          <div class="swatch-color" style="background:#FFFFFF; border: 1px solid #eee;"></div>
+          <div class="swatch-info"><span class="swatch-name">White</span><span class="swatch-hex">#FFFFFF</span></div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background:#F4EFE6; border: 1px solid #e8e0d4;"></div>
+          <div class="swatch-info"><span class="swatch-name">BG Light ★</span><span class="swatch-hex">#F4EFE6</span></div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background:#2B2B2B"></div>
+          <div class="swatch-info"><span class="swatch-name">BG Dark ★</span><span class="swatch-hex">#2B2B2B</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="color-group">
+      <div class="color-group-label">Warm Neutral — 레드 팔레트에 맞춘 웜 그레이 계열</div>
+      <div class="swatches">
+        <div class="swatch"><div class="swatch-color" style="background:#EAE3D9"></div><div class="swatch-info"><span class="swatch-name">Gray-100</span><span class="swatch-hex">#EAE3D9</span></div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#D4C9BC"></div><div class="swatch-info"><span class="swatch-name">Gray-200</span><span class="swatch-hex">#D4C9BC</span></div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#9E9388"></div><div class="swatch-info"><span class="swatch-name">Gray-400</span><span class="swatch-hex">#9E9388</span></div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#615850"></div><div class="swatch-info"><span class="swatch-name">Gray-600</span><span class="swatch-hex">#615850</span></div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#332D28"></div><div class="swatch-info"><span class="swatch-name">Gray-800</span><span class="swatch-hex">#332D28</span></div></div>
+      </div>
+    </div>
+
+    <div class="color-group">
+      <div class="color-group-label">Semantic — 상태 표시 전용 (장식 사용 금지)</div>
+      <div class="swatches">
+        <div class="swatch"><div class="swatch-color" style="background:#4E7A52"></div><div class="swatch-info"><span class="swatch-name">Success</span><span class="swatch-hex">#4E7A52</span></div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#C47828"></div><div class="swatch-info"><span class="swatch-name">Warning</span><span class="swatch-hex">#C47828</span></div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#A83230"></div><div class="swatch-info"><span class="swatch-name">Error</span><span class="swatch-hex">#A83230</span></div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#3A6A8C"></div><div class="swatch-info"><span class="swatch-name">Info</span><span class="swatch-hex">#3A6A8C</span></div></div>
+      </div>
+    </div>
+
+    <!-- Contrast -->
+    <h3 style="font-size: 15px; font-weight: 600; color: var(--gray-800); margin-bottom: 14px; margin-top: 8px;">권장 배경-텍스트 조합 (WCAG AA)</h3>
+    <table class="ds-table">
+      <thead><tr><th>배경</th><th>텍스트</th><th>미리보기</th><th>용도</th></tr></thead>
+      <tbody>
+        <tr><td><code style="font-size:11px">#FFFFFF</code></td><td><code style="font-size:11px">#332D28</code></td><td><div class="contrast-cell" style="background:#FFFFFF; color:#332D28;">Better Food, Better World.</div></td><td>기본 문서 본문</td></tr>
+        <tr><td><code style="font-size:11px">#F4EFE6</code></td><td><code style="font-size:11px">#332D28</code></td><td><div class="contrast-cell" style="background:#F4EFE6; color:#332D28;">에쓰푸드 S-Food</div></td><td>연한 배경 위 본문</td></tr>
+        <tr><td><code style="font-size:11px">#2B2B2B</code></td><td><code style="font-size:11px">#FFFFFF</code></td><td><div class="contrast-cell" style="background:#2B2B2B; color:#FFFFFF;">에쓰푸드 S-Food</div></td><td>다크 배경 헤더/배너</td></tr>
+        <tr><td><code style="font-size:11px">#D5413E</code></td><td><code style="font-size:11px">#FFFFFF</code></td><td><div class="contrast-cell" style="background:#D5413E; color:#FFFFFF;">Primary 버튼</div></td><td>레드 버튼 레이블</td></tr>
+        <tr class="highlight"><td><code style="font-size:11px">#FCF0D6</code></td><td><code style="font-size:11px">#332D28</code></td><td><div class="contrast-cell" style="background:#FCF0D6; color:#332D28;">보색 배경 강조</div></td><td>크림 배경 콜아웃·강조 영역</td></tr>
+        <tr><td><code style="font-size:11px">#2B2B2B</code></td><td><code style="font-size:11px">#DFBA5E</code></td><td><div class="contrast-cell" style="background:#2B2B2B; color:#DFBA5E;">Premium Label</div></td><td>다크 배경 골드 강조 텍스트</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- 3. TYPOGRAPHY -->
+  <section id="typography">
+    <div class="section-label">03 · Typography</div>
+    <h2 class="section-title">타이포그래피</h2>
+    <p class="section-desc">워드/PPT는 <strong>맑은 고딕</strong>, 웹은 <strong>Noto Sans KR</strong>을 기본 폰트로 사용합니다.</p>
+    <div class="divider"></div>
+
+    <div class="grid-3" style="margin-bottom: 32px;">
+      <div class="card">
+        <div style="font-size: 11px; font-weight: 600; color: var(--red); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 10px;">워드 · PPT</div>
+        <div style="font-size: 22px; font-weight: 700; color: var(--gray-800);">맑은 고딕</div>
+        <div style="font-size: 12px; color: var(--gray-400); margin-top: 4px;">Malgun Gothic · 영문: Calibri</div>
+      </div>
+      <div class="card">
+        <div style="font-size: 11px; font-weight: 600; color: var(--red); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 10px;">웹 (Web)</div>
+        <div style="font-size: 22px; font-weight: 700; color: var(--gray-800);">Noto Sans KR</div>
+        <div style="font-size: 12px; color: var(--gray-400); margin-top: 4px;">Google Fonts · 영문: Noto Sans</div>
+      </div>
+      <div class="card">
+        <div style="font-size: 11px; font-weight: 600; color: var(--red); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 10px;">코드 · 데이터</div>
+        <div style="font-size: 20px; font-weight: 700; color: var(--gray-800); font-family: Consolas, monospace;">D2Coding</div>
+        <div style="font-size: 12px; color: var(--gray-400); margin-top: 4px;">Monospace · 대체: Consolas</div>
+      </div>
+    </div>
+
+    <div class="card" style="padding: 0; overflow: hidden;">
+      <div class="type-row" style="padding: 20px 24px;">
+        <div><span class="type-token">display</span><div class="type-spec">48px · 700 · lh 1.1</div></div>
+        <div class="type-sample display-sample">활력</div>
+      </div>
+      <div class="type-row" style="padding: 20px 24px;">
+        <div><span class="type-token">h1</span><div class="type-spec">36px · 700 · lh 1.2</div></div>
+        <div class="type-sample h1-sample">건강한 식품으로 더 나은 세상을</div>
+      </div>
+      <div class="type-row" style="padding: 20px 24px;">
+        <div><span class="type-token">h2</span><div class="type-spec">28px · 600 · lh 1.25</div></div>
+        <div class="type-sample h2-sample">프리미엄 단백질 제품 라인업</div>
+      </div>
+      <div class="type-row" style="padding: 20px 24px;">
+        <div><span class="type-token">h3</span><div class="type-spec">22px · 600 · lh 1.3</div></div>
+        <div class="type-sample h3-sample">베이컨 & 소시지 카테고리</div>
+      </div>
+      <div class="type-row" style="padding: 20px 24px;">
+        <div><span class="type-token">body-lg</span><div class="type-spec">16px · 400 · lh 1.7</div></div>
+        <div class="type-sample body-lg-sample">에쓰푸드는 엄선된 원료와 엄격한 품질 관리를 통해 건강하고 맛있는 식품을 만듭니다.</div>
+      </div>
+      <div class="type-row" style="padding: 20px 24px;">
+        <div><span class="type-token">body</span><div class="type-spec">14px · 400 · lh 1.75</div></div>
+        <div class="type-sample body-sample">본 문서는 에쓰푸드 IT담당 및 AX팀의 업무 생산성 향상을 위해 작성된 공식 내부 가이드입니다. 관련 문의는 담당 부서로 연락 바랍니다.</div>
+      </div>
+      <div class="type-row" style="padding: 20px 24px;">
+        <div><span class="type-token">caption</span><div class="type-spec">12px · 400 · lh 1.6</div></div>
+        <div class="type-sample caption-sample">※ 출처: 에쓰푸드 내부 데이터 기준 (2026년 1분기)</div>
+      </div>
+      <div class="type-row" style="padding: 20px 24px; border-bottom: none;">
+        <div><span class="type-token">overline</span><div class="type-spec">11px · 600 · ls 0.1em · CAPS</div></div>
+        <div class="type-sample overline-sample">Section Title</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. BORDER RADIUS -->
+  <section id="radius">
+    <div class="section-label">04 · Border Radius</div>
+    <h2 class="section-title">Radius 시스템</h2>
+    <p class="section-desc">박스 크기에 비례하여 Radius를 적용합니다. 작은 요소에는 작은 반경, 큰 컨테이너에는 큰 반경을 사용합니다.</p>
+    <div class="divider"></div>
+
+    <div class="card" style="margin-bottom: 24px;">
+      <div class="radius-row">
+        <div class="radius-box" style="width:28px; height:28px; border-radius:var(--r-xs); font-size:9px;">XS</div>
+        <div class="radius-info"><span class="radius-token">--r-xs · 4px</span> 아이콘 버튼, 마이크로 배지, 태그 내 구분 요소</div>
+      </div>
+      <div class="radius-row">
+        <div class="radius-box" style="width:36px; height:28px; border-radius:var(--r-sm); font-size:9px;">SM</div>
+        <div class="radius-info"><span class="radius-token">--r-sm · 6px</span> 태그, 칩, 인라인 배지, 소형 코드 블록</div>
+      </div>
+      <div class="radius-row">
+        <div class="radius-box" style="width:80px; height:36px; border-radius:var(--r-md);">MD</div>
+        <div class="radius-info"><span class="radius-token">--r-md · 10px</span> 입력 필드, 버튼, 드롭다운, 소형 카드 (일반 컴포넌트 기본값)</div>
+      </div>
+      <div class="radius-row">
+        <div class="radius-box" style="width:120px; height:60px; border-radius:var(--r-lg);">LG</div>
+        <div class="radius-info"><span class="radius-token">--r-lg · 14px</span> 일반 카드, 패널, 알림 팝업 (카드 컴포넌트 기본값)</div>
+      </div>
+      <div class="radius-row">
+        <div class="radius-box" style="width:180px; height:80px; border-radius:var(--r-xl);">XL</div>
+        <div class="radius-info"><span class="radius-token">--r-xl · 20px</span> 대형 카드, 모달, 다이얼로그, 섹션 배너</div>
+      </div>
+      <div class="radius-row">
+        <div class="radius-box" style="width:240px; height:100px; border-radius:var(--r-2xl);">2XL</div>
+        <div class="radius-info"><span class="radius-token">--r-2xl · 28px</span> 히어로 섹션, 대형 프로모션 컨테이너, 풀위드 배너</div>
+      </div>
+      <div class="radius-row" style="margin-bottom: 0;">
+        <div class="radius-box" style="width:120px; height:40px; border-radius:var(--r-pill);">PILL</div>
+        <div class="radius-info"><span class="radius-token">--r-pill · 9999px</span> 필 버튼, 아바타, 상태 인디케이터, 검색 바</div>
+      </div>
+    </div>
+
+    <h3 style="font-size: 14px; font-weight: 600; color: var(--gray-800); margin-bottom: 14px;">버튼 크기별 Radius 적용 예시</h3>
+    <div class="card">
+      <div class="btn-showcase">
+        <div class="btn-item">
+          <button class="btn btn-sm btn-primary">Small</button>
+          <span class="btn-label">--r-sm · 6px</span>
+        </div>
+        <div class="btn-item">
+          <button class="btn btn-primary">Medium</button>
+          <span class="btn-label">--r-md · 10px</span>
+        </div>
+        <div class="btn-item">
+          <button class="btn btn-lg btn-primary">Large</button>
+          <span class="btn-label">--r-lg · 14px</span>
+        </div>
+        <div class="btn-item">
+          <button class="btn btn-pill">Pill Button</button>
+          <span class="btn-label">--r-pill · 9999px</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. COMPONENTS -->
+  <section id="components">
+    <div class="section-label">05 · Components</div>
+    <h2 class="section-title">컴포넌트</h2>
+    <p class="section-desc">버튼, 콜아웃, 테이블, 슬라이드 레이아웃 예시입니다.</p>
+    <div class="divider"></div>
+
+    <!-- Buttons -->
+    <h3 style="font-size: 15px; font-weight: 600; color: var(--gray-800); margin-bottom: 14px;">버튼</h3>
+    <div class="card" style="margin-bottom: 28px;">
+      <div class="btn-showcase">
+        <div class="btn-item">
+          <button class="btn btn-primary">Primary</button>
+          <span class="btn-label">핵심 액션</span>
+        </div>
+        <div class="btn-item">
+          <button class="btn btn-secondary">Secondary</button>
+          <span class="btn-label">보조 액션</span>
+        </div>
+        <div class="btn-item">
+          <button class="btn btn-gold">Gold CTA</button>
+          <span class="btn-label">전환 유도</span>
+        </div>
+        <div class="btn-item">
+          <button class="btn btn-dark">Dark</button>
+          <span class="btn-label">다크 배경용</span>
+        </div>
+        <div class="btn-item">
+          <button class="btn btn-ghost">Ghost</button>
+          <span class="btn-label">최소 강조</span>
+        </div>
+        <div class="btn-item">
+          <button class="btn btn-disabled" disabled>Disabled</button>
+          <span class="btn-label">비활성</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Callouts -->
+    <h3 style="font-size: 15px; font-weight: 600; color: var(--gray-800); margin-bottom: 14px;">콜아웃 박스</h3>
+    <div style="margin-bottom: 28px;">
+      <div class="callout callout-info"><strong>📘 정보:</strong> ERP (Enterprise Resource Planning) 시스템 연동 작업은 담당 부서 사전 협의 후 진행합니다.</div>
+      <div class="callout callout-warning"><strong>⚠️ 주의:</strong> 원본 데이터를 직접 수정하기 전에 반드시 백업을 확인하세요.</div>
+      <div class="callout callout-error"><strong>🚫 오류:</strong> WMS (Warehouse Management System) 연결이 끊어졌습니다. IT담당에게 문의하세요.</div>
+      <div class="callout callout-success"><strong>✅ 완료:</strong> 데이터 마이그레이션이 정상적으로 완료되었습니다.</div>
+    </div>
+
+    <!-- Table -->
+    <h3 style="font-size: 15px; font-weight: 600; color: var(--gray-800); margin-bottom: 14px;">표 (Table)</h3>
+    <table class="ds-table" style="margin-bottom: 28px;">
+      <thead><tr><th>시스템명</th><th>Full Name</th><th>담당부서</th><th>상태</th></tr></thead>
+      <tbody>
+        <tr><td>ERP</td><td>Enterprise Resource Planning</td><td>IT담당</td><td style="color:var(--success);font-weight:600;">정상</td></tr>
+        <tr><td>OMS</td><td>Order Management System</td><td>IT담당</td><td style="color:var(--success);font-weight:600;">정상</td></tr>
+        <tr class="highlight"><td>WMS</td><td>Warehouse Management System</td><td>AX팀</td><td style="color:var(--warning);font-weight:600;">점검 중</td></tr>
+        <tr><td>PRM</td><td>Partner Management System</td><td>AX팀</td><td style="color:var(--success);font-weight:600;">정상</td></tr>
+      </tbody>
+    </table>
+
+    <!-- Slide Previews -->
+    <h3 style="font-size: 15px; font-weight: 600; color: var(--gray-800); margin-bottom: 14px;">슬라이드 레이아웃 예시</h3>
+    <div class="grid-2">
+      <div>
+        <div style="font-size: 11px; color: var(--gray-400); margin-bottom: 8px; font-weight:600; text-transform:uppercase; letter-spacing:0.06em;">Cover Slide</div>
+        <div class="slide-preview">
+          <div class="slide-cover" style="flex:1;">
+            <div class="ov">에쓰푸드 AX팀 · 2026 Q2</div>
+            <h3>Better Food,<br>Better World.</h3>
+            <p>디지털 전환 추진 현황 보고</p>
+          </div>
+          <div class="slide-bar"></div>
+        </div>
+      </div>
+      <div>
+        <div style="font-size: 11px; color: var(--gray-400); margin-bottom: 8px; font-weight:600; text-transform:uppercase; letter-spacing:0.06em;">Content Slide</div>
+        <div class="slide-preview">
+          <div class="slide-content" style="flex:1;">
+            <div class="slide-title">주요 추진 과제</div>
+            <ul>
+              <li>OCI 기반 클라우드 인프라 전환 (2026 Q3 완료 목표)</li>
+              <li>ERP-WMS 실시간 연동 고도화 프로젝트</li>
+              <li>AI 기반 수요 예측 모델 파일럿 운영</li>
+              <li>임직원 디지털 리터러시 교육 프로그램 시행</li>
+            </ul>
+          </div>
+          <div class="slide-footer">
+            <span>에쓰푸드 AX팀 내부자료 | Confidential</span>
+            <span>3</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. SPACING -->
+  <section id="spacing">
+    <div class="section-label">06 · Spacing</div>
+    <h2 class="section-title">간격 시스템</h2>
+    <p class="section-desc">4px Base Unit을 기준으로 한 일관된 간격 토큰입니다.</p>
+    <div class="divider"></div>
+    <div class="card">
+      <div class="spacing-row"><div class="spacing-block" style="width:4px;"></div><span class="spacing-label"><span class="spacing-token">xs · 4px</span> 아이콘 내부 패딩</span></div>
+      <div class="spacing-row"><div class="spacing-block" style="width:8px;"></div><span class="spacing-label"><span class="spacing-token">sm · 8px</span> 인접 요소 간격</span></div>
+      <div class="spacing-row"><div class="spacing-block" style="width:12px;"></div><span class="spacing-label"><span class="spacing-token">md · 12px</span> 컴포넌트 내부 패딩</span></div>
+      <div class="spacing-row"><div class="spacing-block" style="width:16px;"></div><span class="spacing-label"><span class="spacing-token">lg · 16px</span> 카드 패딩, 섹션 내 요소 간격</span></div>
+      <div class="spacing-row"><div class="spacing-block" style="width:24px;"></div><span class="spacing-label"><span class="spacing-token">xl · 24px</span> 카드 간 간격</span></div>
+      <div class="spacing-row"><div class="spacing-block" style="width:32px;"></div><span class="spacing-label"><span class="spacing-token">2xl · 32px</span> 섹션 간 간격</span></div>
+      <div class="spacing-row"><div class="spacing-block" style="width:48px;"></div><span class="spacing-label"><span class="spacing-token">3xl · 48px</span> 주요 섹션 구분</span></div>
+      <div class="spacing-row" style="margin-bottom:0;"><div class="spacing-block" style="width:64px;"></div><span class="spacing-label"><span class="spacing-token">4xl · 64px</span> 페이지 상하 여백</span></div>
+    </div>
+  </section>
+
+  <!-- 7. DO / DON'T -->
+  <section id="donts">
+    <div class="section-label">07 · Do &amp; Don't</div>
+    <h2 class="section-title">주의사항</h2>
+    <p class="section-desc">디자인 시스템의 일관성을 지키기 위한 핵심 규칙입니다.</p>
+    <div class="divider"></div>
+    <div class="do-dont">
+      <div class="do-card">
+        <h4>✅ Do — 해야 할 것</h4>
+        <div class="rule-item"><span>✔</span><span>컬러는 팔레트 토큰만 사용한다</span></div>
+        <div class="rule-item"><span>✔</span><span>모든 박스·카드에는 반드시 Radius를 적용한다</span></div>
+        <div class="rule-item"><span>✔</span><span>박스 크기에 비례해 Radius를 선택한다 (r-sm → r-2xl)</span></div>
+        <div class="rule-item"><span>✔</span><span>제목 위계(H1→H2→H3)를 순서대로 사용한다</span></div>
+        <div class="rule-item"><span>✔</span><span>크림(#FCF0D6)은 보색 배경·강조 영역에만 사용한다</span></div>
+        <div class="rule-item"><span>✔</span><span>다크 배경(#2B2B2B)에선 골드 또는 White 텍스트만 허용한다</span></div>
+        <div class="rule-item"><span>✔</span><span>약어 최초 사용 시 Full Name을 병기한다</span></div>
+      </div>
+      <div class="dont-card">
+        <h4>❌ Don't — 하지 말 것</h4>
+        <div class="rule-item"><span>✘</span><span>팔레트 외 임의 색상 추가 금지</span></div>
+        <div class="rule-item"><span>✘</span><span>카드·박스에 Radius 0 (직각) 사용 금지</span></div>
+        <div class="rule-item"><span>✘</span><span>작은 요소에 큰 Radius 적용 금지 (버튼에 r-2xl 등)</span></div>
+        <div class="rule-item"><span>✘</span><span>텍스트-배경 대비 4.5:1 미만 조합 금지</span></div>
+        <div class="rule-item"><span>✘</span><span>Semantic 컬러 장식 목적 사용 금지</span></div>
+        <div class="rule-item"><span>✘</span><span>레드(#D5413E)를 에러 표시 외 경고/위험 문맥에 혼용 금지</span></div>
+        <div class="rule-item"><span>✘</span><span>세리프(Serif) 폰트 공식 문서 사용 금지</span></div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="mission-footer">"Better Food, Better World."</div>
+  <strong>에쓰푸드 통합 디자인 시스템 v2.0</strong><br>
+  Maintained by IT담당 · AX팀 &nbsp;·&nbsp; 최초 작성 2026-06-22<br>
+  변경 시 IT담당 또는 AX팀 내부 검토 후 버전 업데이트
+</footer>
+
+</body>
+</html>
