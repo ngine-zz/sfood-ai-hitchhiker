@@ -6,7 +6,7 @@
 ## GitHub Pages
 
 GitHub Pages는 저장소 루트의 `index.html`을 진입점으로 사용한다.
-현재 `index.html`은 `AI하이커-안내서.html`로 이동한다.
+현재 `index.html`은 `sfood-ai-hitchhiker-guide.html`로 이동한다.
 
 ## Structure
 
