@@ -111,9 +111,17 @@ button{font-family:inherit;cursor:pointer;}
   -webkit-background-clip:text!important;background-clip:text!important;-webkit-text-fill-color:transparent!important;
   animation:textshine 1.2s linear infinite;}
 .navbtn-gold{position:relative;overflow:hidden;text-decoration:none;}
-.navbtn-gold::before{content:'';position:absolute;inset:-1.5px;border-radius:inherit;padding:1.5px;background:linear-gradient(100deg,rgba(223,186,94,.38) 0%,rgba(223,186,94,.38) 34%,#FFF3CC 50%,rgba(223,186,94,.38) 66%,rgba(223,186,94,.38) 100%);background-size:250% 100%;opacity:0;pointer-events:none;-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);mask-composite:exclude;transition:opacity .15s;}
+.navbtn-gold::before{content:'';position:absolute;inset:-1.5px;border-radius:inherit;padding:1.5px;background:linear-gradient(100deg,rgba(223,186,94,.38) 0%,rgba(223,186,94,.38) 34%,#FFF3CC 50%,rgba(223,186,94,.38) 66%,rgba(223,186,94,.38) 100%);background-size:250% 100%;opacity:.72;pointer-events:none;-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);mask-composite:exclude;animation:textshine 2.4s linear infinite;transition:opacity .15s;}
 .navbtn-gold:hover{border-color:transparent!important;box-shadow:0 0 18px rgba(223,186,94,.3),0 0 34px rgba(255,243,204,.12),inset 0 0 18px rgba(255,243,204,.08);background-image:linear-gradient(100deg,#DFBA5E 0%,#DFBA5E 36%,#FFF3CC 50%,#DFBA5E 64%,#DFBA5E 100%)!important;}
 .navbtn-gold:hover::before{opacity:1;animation:textshine 2.4s linear infinite;}
+.hamburger{display:none;position:relative;width:40px;height:40px;align-items:center;justify-content:center;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.14);border-radius:10px;color:#fff;}
+.hamburger span{position:absolute;width:18px;height:2px;border-radius:999px;background:#fff;transition:transform .18s,opacity .18s,top .18s;}
+.hamburger span:nth-child(1){top:13px;}
+.hamburger span:nth-child(2){top:19px;}
+.hamburger span:nth-child(3){top:25px;}
+.site-nav.open .hamburger span:nth-child(1){top:19px;transform:rotate(45deg);}
+.site-nav.open .hamburger span:nth-child(2){opacity:0;}
+.site-nav.open .hamburger span:nth-child(3){top:19px;transform:rotate(-45deg);}
 
 /* ── Cards ── */
 .llm-card{transition:transform .2s,box-shadow .2s;}
@@ -162,6 +170,13 @@ button{font-family:inherit;cursor:pointer;}
 .footer-b612{position:absolute;right:0;bottom:0;width:clamp(130px,22vw,260px);overflow:hidden;opacity:.9;pointer-events:none;filter:drop-shadow(0 16px 34px rgba(0,0,0,.48));}
 .footer-b612 img{display:block;width:calc(100% + 3px);height:auto;transform:translateX(-3px);}
 @media(max-width:960px){
+  .site-nav{padding:12px 18px!important;}
+  .brand-title,.brand-divider{display:none!important;}
+  .hamburger{display:inline-flex;}
+  .gnb{display:none!important;position:absolute;top:100%;left:12px;right:12px;flex-direction:column;align-items:stretch!important;gap:4px!important;padding:10px;background:rgba(21,22,29,.96);border:1px solid rgba(255,255,255,.1);border-radius:14px;box-shadow:0 18px 46px rgba(0,0,0,.42);}
+  .site-nav.open .gnb{display:flex!important;}
+  .gnb .navbtn{width:100%;text-align:left;padding:11px 12px!important;}
+  .gnb a.navbtn{justify-content:flex-start;}
   .hero-copy{max-width:640px;font-size:14px;}
   .hero-copy-line{white-space:normal;}
   .section-copy{max-width:640px;font-size:14px;}
@@ -217,13 +232,14 @@ button{font-family:inherit;cursor:pointer;}
   <div style="position:relative;z-index:3;">
 
     <!-- ══════════════ NAV ══════════════ -->
-    <nav style="position:sticky;top:0;z-index:40;display:flex;align-items:center;justify-content:space-between;padding:14px 40px;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);background:rgba(21,22,29,.75);border-bottom:1px solid rgba(255,255,255,.07);">
+    <nav id="siteNav" class="site-nav" style="position:sticky;top:0;z-index:40;display:flex;align-items:center;justify-content:space-between;padding:14px 40px;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);background:rgba(21,22,29,.75);border-bottom:1px solid rgba(255,255,255,.07);">
       <button onclick="navTo('top')" style="display:flex;align-items:center;gap:10px;background:none;border:none;padding:0;">
         <span class="sfood-logo" style="height:14px;width:66px;" aria-label="SFOOD"></span>
-        <span style="width:1px;height:15px;background:rgba(255,255,255,.25);"></span>
-        <span style="font-size:13px;color:rgba(255,255,255,.65);">AI히치하이커 안내서</span>
+        <span class="brand-divider" style="width:1px;height:15px;background:rgba(255,255,255,.25);"></span>
+        <span class="brand-title" style="font-size:13px;color:rgba(255,255,255,.65);">AI히치하이커 안내서</span>
       </button>
-      <div style="display:flex;gap:6px;flex-wrap:wrap;align-items:center;">
+      <button class="hamburger" type="button" onclick="toggleMenu()" aria-label="메뉴 열기" aria-expanded="false" aria-controls="gnbMenu"><span></span><span></span><span></span></button>
+      <div id="gnbMenu" class="gnb" style="display:flex;gap:6px;flex-wrap:wrap;align-items:center;">
         <button onclick="navTo('llm')" class="navbtn" style="background:transparent;border:none;color:rgba(255,255,255,.82);font-size:13.5px;padding:8px 12px;border-radius:8px;">LLM 지침</button>
         <button onclick="navTo('markdown')" class="navbtn" style="background:transparent;border:none;color:rgba(255,255,255,.82);font-size:13.5px;padding:8px 12px;border-radius:8px;">마크다운</button>
         <button onclick="navTo('design')" class="navbtn" style="background:transparent;border:none;color:rgba(255,255,255,.82);font-size:13.5px;padding:8px 12px;border-radius:8px;">디자인 시스템</button>
@@ -649,7 +665,24 @@ button{font-family:inherit;cursor:pointer;}
 function navTo(id) {
   const el = document.getElementById(id);
   if (!el) return;
+  closeMenu();
   window.scrollTo({ top: Math.max(0, el.getBoundingClientRect().top + window.scrollY - 12), behavior: 'smooth' });
+}
+function toggleMenu() {
+  const nav = document.getElementById('siteNav');
+  const btn = nav && nav.querySelector('.hamburger');
+  if (!nav || !btn) return;
+  const open = nav.classList.toggle('open');
+  btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  btn.setAttribute('aria-label', open ? '메뉴 닫기' : '메뉴 열기');
+}
+function closeMenu() {
+  const nav = document.getElementById('siteNav');
+  const btn = nav && nav.querySelector('.hamburger');
+  if (!nav || !btn) return;
+  nav.classList.remove('open');
+  btn.setAttribute('aria-expanded', 'false');
+  btn.setAttribute('aria-label', '메뉴 열기');
 }
 let _tt;
 function toast(msg) {
@@ -798,7 +831,7 @@ const SKILLS = [
   const axFont = new Array(LEVELS), axAlpha = new Float32Array(LEVELS);
   for (let i=0; i<LEVELS; i++) {
     const d=i/(LEVELS-1);
-    preColor[i]=`rgb(${Math.round(150+d*105)},${Math.round(40+d*150)},${Math.round(40+d*70)})`;
+    preColor[i]=`rgb(${Math.round(122+d*114)},${Math.round(24+d*82)},${Math.round(36+d*68)})`;
     preFont[i]=`700 ${(10+d*7).toFixed(0)}px 'Space Grotesk',sans-serif`;
     preAlpha[i]=0.12+d*0.88;
     axFont[i]=`800 ${(9+d*8).toFixed(0)}px 'Space Grotesk',sans-serif`;
