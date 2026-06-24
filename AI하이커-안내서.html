@@ -167,10 +167,10 @@ button{font-family:inherit;cursor:pointer;}
 }
 
 /* ── Star Wars Crawl ── */
-.crawl-wrap{position:relative;height:190px;overflow:hidden;margin-top:36px;}
+.crawl-wrap{position:relative;height:189px;overflow:hidden;margin-top:36px;}
 .crawl-wrap::after{content:'';position:absolute;top:0;left:0;right:0;height:68%;background:linear-gradient(to bottom,#15161D 0%,transparent 100%);pointer-events:none;z-index:2;}
 .crawl-stage{position:absolute;inset:0;perspective:120px;perspective-origin:50% bottom;}
-.crawl-inner{position:absolute;bottom:0;width:90%;left:5%;transform-origin:50% 100%;text-align:center;animation:swcrawl 240s linear infinite;}
+.crawl-inner{position:absolute;top:0;width:90%;left:5%;transform-origin:50% 100%;text-align:center;animation:swcrawl var(--crawl-duration,120s) linear infinite;}
 .crawl-inner .c-title{font-size:22px;font-weight:900;letter-spacing:.1em;color:#fff;margin:0 0 1.2em;}
 .crawl-inner .c-h2{font-size:18px;font-weight:700;letter-spacing:.06em;color:#fff;margin:1.6em 0 .5em;}
 .crawl-inner .c-h3{font-size:15px;font-weight:600;color:#fff;margin:1em 0 .3em;}
@@ -178,9 +178,8 @@ button{font-family:inherit;cursor:pointer;}
 .crawl-inner .c-li{font-size:14px;line-height:1.75;color:#fff;margin:.1em 0;}
 .crawl-inner .c-hr{border:none;border-top:1px solid rgba(255,255,255,.15);margin:1.3em 0;}
 @keyframes swcrawl{
-  0%   {transform:rotateX(42deg) translateY(220px)}
-  98%  {transform:rotateX(42deg) translateY(-6500px)}
-  100% {transform:rotateX(42deg) translateY(-6500px)}
+  0%   {transform:rotateX(42deg) translateY(var(--crawl-start,210px))}
+  100% {transform:rotateX(42deg) translateY(calc(var(--crawl-end,-6500px) - var(--crawl-gap,54px)))}
 }
 
 @media(prefers-reduced-motion:reduce){
@@ -699,6 +698,23 @@ function setTab(tab) {
   document.getElementById('pDesktop').style.display = tab === 'desktop' ? 'grid' : 'none';
   document.getElementById('pMobile').style.display = tab === 'mobile' ? 'grid' : 'none';
 }
+
+/* ── crawl timing ── */
+function tuneCrawl() {
+  const wrap = document.querySelector('.crawl-wrap');
+  const inner = document.querySelector('.crawl-inner');
+  if (!wrap || !inner) return;
+  const start = Math.round(wrap.clientHeight);
+  const end = -Math.round(inner.scrollHeight);
+  const distance = start - end;
+  const pxPerSecond = 34;
+  inner.style.setProperty('--crawl-start', start + 'px');
+  inner.style.setProperty('--crawl-end', end + 'px');
+  inner.style.setProperty('--crawl-gap', (pxPerSecond * 2) + 'px');
+  inner.style.setProperty('--crawl-duration', Math.max(32, distance / pxPerSecond) + 's');
+}
+window.addEventListener('load', tuneCrawl);
+window.addEventListener('resize', tuneCrawl);
 
 /* ── skills grid ── */
 const SKILLS = [
