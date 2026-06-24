@@ -150,6 +150,11 @@ button{font-family:inherit;cursor:pointer;}
 .prompt-examples{margin-top:20px;padding:22px;border:1px solid rgba(223,186,94,.2);border-radius:14px;background:rgba(255,255,255,.045);}
 .prompt-example-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:14px;}
 .prompt-example{min-height:86px;display:flex;align-items:center;padding:16px;border:1px solid rgba(255,255,255,.1);border-radius:12px;background:rgba(255,255,255,.045);color:#fff;font-size:14px;font-weight:700;line-height:1.55;word-break:keep-all;}
+.security-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-top:26px;}
+.security-card{background:rgba(255,255,255,.08);border:1px solid rgba(228,118,116,.28);border-radius:12px;padding:16px 18px;box-shadow:0 12px 28px rgba(0,0,0,.22);}
+.security-card-head{display:flex;align-items:center;gap:10px;color:#fff;font-size:14px;font-weight:800;}
+.security-card-icon{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:9px;background:rgba(213,65,62,.22);font-size:17px;flex:0 0 auto;}
+.security-card-copy{margin-top:8px;padding-left:40px;font-size:13px;line-height:1.6;color:rgba(255,255,255,.72);}
 .skill-section{margin-top:30px;}
 .skill-section+.skill-section{margin-top:38px;}
 .skill-section-title{font-size:18px;font-weight:800;color:#fff;margin:0 0 14px;}
@@ -581,10 +586,10 @@ button{font-family:inherit;cursor:pointer;}
         <div style="margin-top:18px;max-width:680px;font-size:15px;line-height:1.75;color:rgba(255,255,255,.72);">
           보안은 무엇보다 중요합니다. 특히 개인 계정으로 사용 시 우리가 올리는 파일들은 LLM의 학습자료로 유출될 수 있습니다. 회사의 중요한 정보들을 LLM에게 직접 업로드하지 말아 주세요.
         </div>
-        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-top:26px;">
-          <div style="background:rgba(0,0,0,.25);border-radius:12px;padding:18px;"><div style="font-size:20px;">🔒</div><div style="font-size:14px;font-weight:700;color:#fff;margin-top:8px;">민감정보 금지</div><div style="font-size:12.5px;line-height:1.6;color:rgba(255,255,255,.6);margin-top:4px;">고객·인사·미공개 정보는 입력하지 않기.</div></div>
-          <div style="background:rgba(0,0,0,.25);border-radius:12px;padding:18px;"><div style="font-size:20px;">🧾</div><div style="font-size:14px;font-weight:700;color:#fff;margin-top:8px;">결과 검증</div><div style="font-size:12.5px;line-height:1.6;color:rgba(255,255,255,.6);margin-top:4px;">사실·수치는 반드시 사람이 확인.</div></div>
-          <div style="background:rgba(0,0,0,.25);border-radius:12px;padding:18px;"><div style="font-size:20px;">🛡️</div><div style="font-size:14px;font-weight:700;color:#fff;margin-top:8px;">승인된 도구</div><div style="font-size:12.5px;line-height:1.6;color:rgba(255,255,255,.6);margin-top:4px;">사내 정책에 맞는 도구·계정만 사용.</div></div>
+        <div class="security-grid">
+          <div class="security-card"><div class="security-card-head"><span class="security-card-icon">🔒</span><span>민감정보 금지</span></div><div class="security-card-copy">고객·인사·미공개 정보는 입력하지 않기.</div></div>
+          <div class="security-card"><div class="security-card-head"><span class="security-card-icon">🧾</span><span>결과 검증</span></div><div class="security-card-copy">사실·수치는 반드시 사람이 확인.</div></div>
+          <div class="security-card"><div class="security-card-head"><span class="security-card-icon">🛡️</span><span>승인된 도구</span></div><div class="security-card-copy">사내 정책에 맞는 도구·계정만 사용.</div></div>
         </div>
         <button onclick="toast('보안 가이드라인은 사내 웹 링크에서 확인하세요 (추후 연결)')" class="btn-gold-outline" style="margin-top:24px;">🔗 보안 가이드라인 확인하기 ↗</button>
       </div>
