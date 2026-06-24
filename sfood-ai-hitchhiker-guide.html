@@ -158,6 +158,30 @@ button{font-family:inherit;cursor:pointer;}
 .prompt-examples{margin-top:20px;padding:22px;border:1px solid rgba(223,186,94,.2);border-radius:14px;background:rgba(255,255,255,.045);}
 .prompt-example-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:14px;}
 .prompt-example{min-height:86px;display:flex;align-items:center;padding:16px;border:1px solid rgba(255,255,255,.1);border-radius:12px;background:rgba(255,255,255,.045);color:#fff;font-size:14px;font-weight:700;line-height:1.55;word-break:keep-all;}
+.design-system-board{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(260px,.75fr);gap:20px;margin-top:30px;}
+.design-core-panel{background:#fff;border:1px solid rgba(212,201,188,.8);border-radius:14px;padding:24px;box-shadow:0 16px 40px rgba(0,0,0,.34);color:#2B2B2B;}
+.design-core-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 22px;}
+.design-core-cell{min-width:0;}
+.design-core-cell:nth-child(1),.design-core-cell:nth-child(2){padding-bottom:18px;border-bottom:1px solid #EAE3D9;}
+.design-core-cell:nth-child(odd){padding-right:22px;border-right:1px solid #EAE3D9;}
+.design-card-kicker{font-size:11px;letter-spacing:.12em;color:#C4882A;font-weight:800;}
+.design-card-title{margin-top:8px;font-size:19px;font-weight:900;color:#2B2B2B;}
+.design-card-copy{margin-top:7px;font-size:13px;line-height:1.55;color:#615850;}
+.design-value-list{display:grid;gap:8px;margin-top:13px;}
+.design-value{display:grid;grid-template-columns:74px 1fr;gap:10px;align-items:start;font-size:12px;line-height:1.45;color:#615850;}
+.design-value strong{color:#332D28;font-size:13px;}
+.palette-row{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin-top:14px;}
+.palette-swatch{min-height:58px;border-radius:12px;padding:8px;border:1px solid rgba(212,201,188,.65);display:flex;flex-direction:column;justify-content:flex-end;font-size:10px;font-weight:800;color:#fff;box-shadow:inset 0 -24px 34px rgba(0,0,0,.18);}
+.palette-swatch.light{color:#332D28;box-shadow:inset 0 -24px 34px rgba(255,255,255,.3);}
+.font-stack{display:grid;gap:9px;margin-top:13px;}
+.font-row{padding:9px 10px;border-radius:10px;background:#F4EFE6;border:1px solid #EAE3D9;font-size:12px;color:#615850;}
+.font-row strong{display:block;color:#2B2B2B;font-size:15px;margin-top:2px;}
+.card-rules{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:13px;}
+.card-rule{min-height:68px;border:1px solid #D4C9BC;background:#F4EFE6;display:flex;align-items:center;justify-content:center;text-align:center;padding:8px;font-size:11px;font-weight:800;color:#615850;}
+.card-rule.md{border-radius:10px;}
+.card-rule.lg{border-radius:14px;}
+.card-rule.xl{border-radius:20px;}
+.design-download-card{display:flex;flex-direction:column;justify-content:center;background:linear-gradient(155deg,#2B2B2B,#1d1d1d);border-radius:14px;padding:26px;box-shadow:0 16px 40px rgba(0,0,0,.4);border:1px solid rgba(223,186,94,.18);}
 .security-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-top:26px;}
 .security-card{background:rgba(255,255,255,.08);border:1px solid rgba(228,118,116,.28);border-radius:12px;padding:16px 18px;box-shadow:0 12px 28px rgba(0,0,0,.22);}
 .security-card-head{display:flex;align-items:center;gap:10px;color:#fff;font-size:14px;font-weight:800;}
@@ -182,6 +206,10 @@ button{font-family:inherit;cursor:pointer;}
   .section-copy{max-width:640px;font-size:14px;}
   .section-copy-line{white-space:normal;}
   .markdown-actions{grid-template-columns:1fr;max-width:640px;}
+  .design-system-board{grid-template-columns:1fr;}
+  .design-core-grid{grid-template-columns:1fr;}
+  .design-core-cell{padding:0 0 18px!important;border-right:none!important;border-bottom:1px solid #EAE3D9!important;}
+  .design-core-cell:last-child{padding-bottom:0!important;border-bottom:none!important;}
   .prompt-example-grid{grid-template-columns:1fr;}
   .footer-b612{right:0;bottom:0;width:130px;opacity:.75;}
 }
@@ -510,43 +538,56 @@ button{font-family:inherit;cursor:pointer;}
         S-Red를 기반으로 지정된 T&amp;M에 맞춰 디자인할 수 있는 LLM용 디자인 시스템 가이드에요.<br>
         <strong>워드를 만들 때도, 파워포인트를 만들 때도 적용할 수 있어요.</strong>
       </div>
-      <div style="display:grid;grid-template-columns:1.6fr 1fr;gap:20px;margin-top:30px;">
-        <div style="background:#fff;border-radius:14px;padding:26px;box-shadow:0 16px 40px rgba(0,0,0,.4);">
-          <div class="orb" style="font-size:11px;letter-spacing:.12em;color:#C4882A;font-weight:700;">SYMBOLIC COLOR</div>
-          <div style="display:flex;gap:10px;margin:14px 0 8px;flex-wrap:wrap;">
-            <div style="text-align:center;"><div style="width:52px;height:52px;border-radius:12px;background:#D5413E;"></div><div style="font-size:10px;color:#615850;margin-top:5px;">S-Red</div></div>
-            <div style="text-align:center;"><div style="width:52px;height:52px;border-radius:12px;background:#FCF0D6;border:1px solid #EAE3D9;"></div><div style="font-size:10px;color:#615850;margin-top:5px;">Cream</div></div>
-            <div style="text-align:center;"><div style="width:52px;height:52px;border-radius:12px;background:#2B2B2B;"></div><div style="font-size:10px;color:#615850;margin-top:5px;">Dark</div></div>
-            <div style="text-align:center;"><div style="width:52px;height:52px;border-radius:12px;background:#C4882A;"></div><div style="font-size:10px;color:#615850;margin-top:5px;">Gold</div></div>
-            <div style="text-align:center;"><div style="width:52px;height:52px;border-radius:12px;background:#4E7A52;"></div><div style="font-size:10px;color:#615850;margin-top:5px;">Success</div></div>
-            <div style="text-align:center;"><div style="width:52px;height:52px;border-radius:12px;background:#F4EFE6;border:1px solid #EAE3D9;"></div><div style="font-size:10px;color:#615850;margin-top:5px;">BG Light</div></div>
+      <div class="design-system-board">
+        <div class="design-core-panel">
+          <div class="design-core-grid">
+          <div class="design-core-cell">
+            <div class="design-card-kicker">TONE &amp; MANNER</div>
+            <div class="design-card-title">활력 · 온기 · 신뢰</div>
+            <div class="design-card-copy">단백질·육가공 전문 기업의 에너지와 장인 정신, 안전한 품질감을 함께 보여주는 방향입니다.</div>
+            <div class="design-value-list">
+              <div class="design-value"><strong>Vitality</strong><span>S-Red 기반의 건강한 힘과 활력</span></div>
+              <div class="design-value"><strong>Warmth</strong><span>Cream Gold 기반의 식탁의 온기</span></div>
+              <div class="design-value"><strong>Trust</strong><span>BG Dark 기반의 정돈된 구조와 신뢰</span></div>
+            </div>
           </div>
-          <div style="height:1px;background:#EAE3D9;margin:18px 0;"></div>
-          <div style="display:flex;gap:28px;flex-wrap:wrap;">
-            <div>
-              <div class="orb" style="font-size:11px;letter-spacing:.12em;color:#C4882A;font-weight:700;margin-bottom:8px;">TYPE</div>
-              <div style="display:grid;gap:7px;color:#2B2B2B;">
-                <div><span style="font-size:12px;font-weight:800;color:#C4882A;">워드 · PPT</span><br><span style="font-size:20px;font-weight:900;">맑은 고딕</span> <span style="font-size:12px;color:#615850;">· Calibri</span></div>
-                <div><span style="font-size:12px;font-weight:800;color:#C4882A;">웹</span><br><span style="font-size:18px;font-weight:800;">Noto Sans KR</span> <span style="font-size:12px;color:#615850;">· Noto Sans</span></div>
-                <div><span style="font-size:12px;font-weight:800;color:#C4882A;">코드 · 데이터</span><br><span style="font-size:17px;font-weight:800;font-family:Consolas,monospace;">D2Coding</span> <span style="font-size:12px;color:#615850;">· Consolas</span></div>
-              </div>
-              <div style="font-size:13px;color:#615850;margin-top:8px;">매체별 기본 폰트와 타입 스케일 정의</div>
+          <div class="design-core-cell">
+            <div class="design-card-kicker">COLOR PALETTE</div>
+            <div class="design-card-title">S-Red 중심의 웜 팔레트</div>
+            <div class="palette-row">
+              <div class="palette-swatch" style="background:#D5413E;">S-Red<br>#D5413E</div>
+              <div class="palette-swatch light" style="background:#FCF0D6;">Cream<br>#FCF0D6</div>
+              <div class="palette-swatch" style="background:#2B2B2B;">Dark<br>#2B2B2B</div>
+              <div class="palette-swatch" style="background:#C4882A;">Gold<br>#C4882A</div>
             </div>
-            <div>
-              <div class="orb" style="font-size:11px;letter-spacing:.12em;color:#C4882A;font-weight:700;margin-bottom:8px;">RADIUS</div>
-              <div style="display:flex;gap:8px;align-items:flex-end;">
-                <div style="width:34px;height:34px;background:#F4EFE6;border:1px solid #D4C9BC;border-radius:4px;"></div>
-                <div style="width:40px;height:40px;background:#F4EFE6;border:1px solid #D4C9BC;border-radius:10px;"></div>
-                <div style="width:46px;height:46px;background:#F4EFE6;border:1px solid #D4C9BC;border-radius:14px;"></div>
-                <div style="width:52px;height:52px;background:#F4EFE6;border:1px solid #D4C9BC;border-radius:20px;"></div>
-              </div>
+            <div class="design-card-copy">Red Bright, Red Dark, Gray, Success 등 확장 색상은 강조와 상태 표시에만 사용합니다.</div>
+          </div>
+          <div class="design-core-cell">
+            <div class="design-card-kicker">FONT STYLE</div>
+            <div class="design-card-title">매체별 기본 폰트</div>
+            <div class="font-stack">
+              <div class="font-row">기본 폰트<strong>워드/PPT: 맑은 고딕 · Calibri<br>웹: Noto Sans KR · Noto Sans</strong></div>
+              <div class="font-row">제목 스타일<strong>H1 36px · H2 28px · 600-700</strong></div>
+              <div class="font-row">본문 스타일<strong>Body 14px · Body LG 16px · 행간 1.7+</strong></div>
             </div>
+            <div class="design-card-copy">제목은 굵게, 본문은 충분한 행간으로 읽기 쉽게 잡습니다.</div>
+          </div>
+          <div class="design-core-cell">
+            <div class="design-card-kicker">CARD &amp; BOX</div>
+            <div class="design-card-title">둥근 모서리와 낮은 그림자</div>
+            <div class="card-rules">
+              <div class="card-rule md">버튼<br>10px</div>
+              <div class="card-rule lg">카드<br>14px</div>
+              <div class="card-rule xl">대형 박스<br>20px</div>
+            </div>
+            <div class="design-card-copy">모든 박스와 카드는 Radius를 적용하고, 테두리는 Gray-200, 그림자는 낮고 정돈되게 사용합니다.</div>
+          </div>
           </div>
         </div>
-        <div style="display:flex;flex-direction:column;justify-content:center;background:linear-gradient(155deg,#2B2B2B,#1d1d1d);border-radius:14px;padding:26px;box-shadow:0 16px 40px rgba(0,0,0,.4);border:1px solid rgba(223,186,94,.18);">
+        <div class="design-download-card">
           <div style="font-size:30px;">🎨</div>
           <div style="font-size:18px;font-weight:700;color:#fff;margin-top:10px;">디자인 시스템 받기</div>
-          <div style="font-size:13px;line-height:1.6;color:rgba(255,255,255,.6);margin-top:6px;">가이드 문서(.md) + CI 에셋 패키지. 이 페이지도 이 시스템으로 만들었습니다.</div>
+          <div style="font-size:13px;line-height:1.6;color:rgba(255,255,255,.6);margin-top:6px;">톤앤매너, 컬러, 타이포그래피, Radius, 컴포넌트 규칙을 담은 LLM용 가이드 문서입니다.</div>
           <button onclick="dlSystem()" class="btn-gold" style="margin-top:18px;">↓ 시스템 다운로드</button>
         </div>
       </div>
