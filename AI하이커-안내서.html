@@ -140,8 +140,8 @@ button{font-family:inherit;cursor:pointer;}
 .section-copy{margin-top:18px;max-width:920px;font-size:15px;line-height:1.75;color:rgba(255,255,255,.72);}
 .section-copy-line{white-space:nowrap;}
 .markdown-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;max-width:680px;margin-top:18px;}
-.markdown-empty-btn{min-height:44px;background:transparent;border:1.5px solid rgba(223,186,94,.55);border-radius:10px;color:#DFBA5E;font-size:14px;font-weight:700;transition:background .15s,border-color .15s;}
-.markdown-empty-btn:hover{background:rgba(223,186,94,.12);border-color:#DFBA5E;}
+.markdown-empty-btn{min-height:44px;display:inline-flex;align-items:center;justify-content:center;text-decoration:none;background:transparent;border:1.5px solid rgba(223,186,94,.55);border-radius:10px;color:#DFBA5E;font-size:14px;font-weight:700;transition:background .15s,border-color .15s,box-shadow .15s,transform .15s;}
+.markdown-empty-btn:hover{background:rgba(223,186,94,.12);border-color:#DFBA5E;box-shadow:0 0 16px rgba(223,186,94,.22),inset 0 0 18px rgba(255,243,204,.08);transform:translateY(-1px);background-image:linear-gradient(100deg,#DFBA5E 0%,#DFBA5E 36%,#FFF3CC 50%,#DFBA5E 64%,#DFBA5E 100%);background-size:250% 100%;background-repeat:no-repeat;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:textshine 1.2s linear infinite;}
 .skill-section{margin-top:30px;}
 .skill-section+.skill-section{margin-top:38px;}
 .skill-section-title{font-size:18px;font-weight:800;color:#fff;margin:0 0 14px;}
@@ -466,8 +466,8 @@ button{font-family:inherit;cursor:pointer;}
         아니라면 마크다운 기반으로 작성되는 유명한 프로그램을 써보시는 것도 좋아요!
       </div>
       <div class="markdown-actions">
-        <button class="markdown-empty-btn" type="button">노션(Notion) 써보기</button>
-        <button class="markdown-empty-btn" type="button">옵시디언(Obsidian) 써보기</button>
+        <a class="markdown-empty-btn" href="https://www.notion.com/ko" target="_blank" rel="noopener noreferrer">노션(Notion) 써보기</a>
+        <a class="markdown-empty-btn" href="https://obsidian.md" target="_blank" rel="noopener noreferrer">옵시디언(Obsidian) 써보기</a>
       </div>
     </section>
 
