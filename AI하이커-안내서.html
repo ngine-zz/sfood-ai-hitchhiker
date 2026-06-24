@@ -110,7 +110,10 @@ button{font-family:inherit;cursor:pointer;}
   background-size:250% 100%!important;background-repeat:no-repeat;
   -webkit-background-clip:text!important;background-clip:text!important;-webkit-text-fill-color:transparent!important;
   animation:textshine 1.2s linear infinite;}
+.navbtn-gold{overflow:hidden;}
+.navbtn-gold::before{content:'';position:absolute;inset:-1.5px;border-radius:inherit;padding:1.5px;background:linear-gradient(100deg,rgba(223,186,94,.38) 0%,rgba(223,186,94,.38) 34%,#FFF3CC 50%,rgba(223,186,94,.38) 66%,rgba(223,186,94,.38) 100%);background-size:250% 100%;opacity:0;pointer-events:none;-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);mask-composite:exclude;transition:opacity .15s;}
 .navbtn-gold:hover{background-image:linear-gradient(100deg,#DFBA5E 0%,#DFBA5E 36%,#FFF3CC 50%,#DFBA5E 64%,#DFBA5E 100%)!important;}
+.navbtn-gold:hover::before{opacity:1;animation:textshine 2.4s linear infinite;}
 
 /* ── Cards ── */
 .llm-card{transition:transform .2s,box-shadow .2s;}
@@ -144,6 +147,9 @@ button{font-family:inherit;cursor:pointer;}
 .markdown-empty-btn::before{content:'';position:absolute;inset:-1.5px;border-radius:inherit;padding:1.5px;background:linear-gradient(100deg,rgba(223,186,94,.38) 0%,rgba(223,186,94,.38) 34%,#FFF3CC 50%,rgba(223,186,94,.38) 66%,rgba(223,186,94,.38) 100%);background-size:250% 100%;opacity:0;pointer-events:none;-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);mask-composite:exclude;transition:opacity .15s;}
 .markdown-empty-btn:hover{background:rgba(223,186,94,.12);border-color:transparent;box-shadow:0 0 18px rgba(223,186,94,.3),0 0 34px rgba(255,243,204,.12),inset 0 0 18px rgba(255,243,204,.08);transform:translateY(-1px);background-image:linear-gradient(100deg,#DFBA5E 0%,#DFBA5E 36%,#FFF3CC 50%,#DFBA5E 64%,#DFBA5E 100%);background-size:250% 100%;background-repeat:no-repeat;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:textshine 1.2s linear infinite;}
 .markdown-empty-btn:hover::before{opacity:1;animation:textshine 1.2s linear infinite;}
+.prompt-examples{margin-top:20px;padding:22px;border:1px solid rgba(223,186,94,.2);border-radius:14px;background:rgba(255,255,255,.045);}
+.prompt-example-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:14px;}
+.prompt-example{min-height:86px;display:flex;align-items:center;padding:16px;border:1px solid rgba(255,255,255,.1);border-radius:12px;background:rgba(255,255,255,.045);color:#fff;font-size:14px;font-weight:700;line-height:1.55;word-break:keep-all;}
 .skill-section{margin-top:30px;}
 .skill-section+.skill-section{margin-top:38px;}
 .skill-section-title{font-size:18px;font-weight:800;color:#fff;margin:0 0 14px;}
@@ -156,6 +162,7 @@ button{font-family:inherit;cursor:pointer;}
   .section-copy{max-width:640px;font-size:14px;}
   .section-copy-line{white-space:normal;}
   .markdown-actions{grid-template-columns:1fr;max-width:640px;}
+  .prompt-example-grid{grid-template-columns:1fr;}
   .footer-b612{right:0;bottom:0;width:130px;opacity:.75;}
 }
 
@@ -516,6 +523,15 @@ button{font-family:inherit;cursor:pointer;}
           <div style="font-size:18px;font-weight:700;color:#fff;margin-top:10px;">디자인 시스템 받기</div>
           <div style="font-size:13px;line-height:1.6;color:rgba(255,255,255,.6);margin-top:6px;">가이드 문서(.md) + CI 에셋 패키지. 이 페이지도 이 시스템으로 만들었습니다.</div>
           <button onclick="dlSystem()" class="btn-gold" style="margin-top:18px;">↓ 시스템 다운로드</button>
+        </div>
+      </div>
+      <div class="prompt-examples">
+        <div class="orb" style="font-size:11px;letter-spacing:.14em;color:#DFBA5E;font-weight:700;">EXAMPLE PROMPTS</div>
+        <div style="margin-top:8px;font-size:17px;font-weight:800;color:#fff;">이렇게 요청해보세요</div>
+        <div class="prompt-example-grid">
+          <div class="prompt-example">파워포인트에 디자인 시스템을 적용해줘.</div>
+          <div class="prompt-example">이 보고서를 SFOOD 디자인 시스템 기준으로 정리해줘.</div>
+          <div class="prompt-example">첨부한 웹페이지를 에쓰푸드 브랜드 톤으로 다시 디자인해줘.</div>
         </div>
       </div>
     </section>
