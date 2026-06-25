@@ -191,6 +191,10 @@ button{font-family:inherit;cursor:pointer;}
 .skill-section+.skill-section{margin-top:38px;}
 .skill-section-title{font-size:18px;font-weight:800;color:#fff;margin:0 0 14px;}
 .skill-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px;}
+.tips-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px;margin-top:26px;}
+.tip-card{background:rgba(255,255,255,.07);border:1px solid rgba(223,186,94,.18);border-radius:14px;padding:18px;box-shadow:0 12px 28px rgba(0,0,0,.22);}
+.tip-card-title{font-size:15px;font-weight:800;color:#fff;}
+.tip-card-copy{margin-top:8px;font-size:13px;line-height:1.65;color:rgba(255,255,255,.68);}
 .footer-b612{position:absolute;right:0;bottom:0;width:clamp(130px,22vw,260px);overflow:hidden;opacity:.9;pointer-events:none;filter:drop-shadow(0 16px 34px rgba(0,0,0,.48));}
 .footer-b612 img{display:block;width:calc(100% + 3px);height:auto;transform:translateX(-3px);}
 @media(max-width:960px){
@@ -680,6 +684,41 @@ button{font-family:inherit;cursor:pointer;}
         <div id="hooksGrid" class="skill-grid"></div>
       </div>
       <div style="margin-top:14px;font-size:12px;color:rgba(255,255,255,.4);">↳ 스킬 항목·내용은 계속 추가됩니다.</div>
+    </section>
+
+    <!-- ══════════════ 소소한 활용팁 ══════════════ -->
+    <section id="tips" class="section-inner">
+      <div class="orb" style="font-size:12px;font-weight:700;letter-spacing:.22em;color:#DFBA5E;">EXTRA · SMALL TIPS</div>
+      <h2 style="margin:10px 0 0;font-size:clamp(28px,4vw,38px);font-weight:900;color:#fff;letter-spacing:-.01em;">소소한 활용팁</h2>
+      <div class="section-copy">
+        거창한 준비 없이도 답변 품질을 조금 더 안정적으로 만드는 작은 습관들이에요.
+      </div>
+      <div class="tips-grid">
+        <div class="tip-card">
+          <div class="tip-card-title">처음에 역할을 정해주기</div>
+          <div class="tip-card-copy">“너는 에쓰푸드 AX팀의 문서 검토자야”처럼 역할을 먼저 주면 답변 기준이 더 선명해집니다.</div>
+        </div>
+        <div class="tip-card">
+          <div class="tip-card-title">결과물 형태를 먼저 말하기</div>
+          <div class="tip-card-copy">표, 목록, 메일 초안, PPT 목차처럼 원하는 형식을 지정하면 다시 고치는 시간이 줄어듭니다.</div>
+        </div>
+        <div class="tip-card">
+          <div class="tip-card-title">좋은 예시를 하나 붙이기</div>
+          <div class="tip-card-copy">기존 보고서 문장이나 마음에 드는 톤을 짧게 보여주면 비슷한 결로 맞추기 쉽습니다.</div>
+        </div>
+        <div class="tip-card">
+          <div class="tip-card-title">애매하면 먼저 질문하게 하기</div>
+          <div class="tip-card-copy">“정보가 부족하면 바로 작성하지 말고 먼저 질문해줘”라고 쓰면 엉뚱한 결과물을 줄일 수 있습니다.</div>
+        </div>
+        <div class="tip-card">
+          <div class="tip-card-title">민감정보는 바꿔서 넣기</div>
+          <div class="tip-card-copy">고객명, 금액, 내부 수치처럼 민감한 내용은 예시값이나 익명 표현으로 바꿔서 사용하세요.</div>
+        </div>
+        <div class="tip-card">
+          <div class="tip-card-title">마지막에 검토를 요청하기</div>
+          <div class="tip-card-copy">초안이 나온 뒤 “논리 오류, 누락, 보안상 위험한 표현을 점검해줘”라고 한 번 더 확인합니다.</div>
+        </div>
+      </div>
     </section>
 
     <!-- ══════════════ FOOTER ══════════════ -->
