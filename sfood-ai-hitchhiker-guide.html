@@ -146,6 +146,8 @@ button{font-family:inherit;cursor:pointer;}
 .hero-copy{max-width:1180px;margin:26px auto 0;font-size:15px;line-height:1.75;color:rgba(255,255,255,.72);text-align:center;text-shadow:0 2px 10px rgba(0,0,0,.34),0 0 18px rgba(0,0,0,.18);}
 .hero-copy-line{white-space:nowrap;}
 .hero-copy strong,.section-copy strong{color:#FFF;}
+.marker-underline{position:relative;display:inline;z-index:0;padding:0 .04em;color:#FFF;}
+.marker-underline::after{content:'';position:absolute;left:-.05em;right:-.05em;bottom:.04em;height:.5em;z-index:-1;background:linear-gradient(90deg,rgba(213,65,62,.38),rgba(223,186,94,.6) 48%,rgba(252,240,214,.48));border-radius:999px;transform:rotate(-.5deg);box-shadow:0 0 14px rgba(223,186,94,.16);}
 .scroll-cue{margin-top:34px;background:transparent;border:none;padding:8px 14px;font-size:12px;letter-spacing:.2em;color:rgba(255,255,255,.88);text-shadow:0 2px 8px rgba(0,0,0,.42);animation:scrollglow 1.8s ease-in-out infinite;cursor:pointer;}
 .scroll-cue:hover{color:#fff;}
 .section-copy{margin-top:18px;max-width:920px;font-size:15px;line-height:1.75;color:rgba(255,255,255,.72);}
@@ -302,8 +304,8 @@ button{font-family:inherit;cursor:pointer;}
         </h1>
         <div class="hero-copy">
           <div>AI를 잘 쓰고 싶은데, 막막하다구요? 어려워하지 마세요.</div>
-          <div class="hero-copy-line"><strong>조금 더 똑똑한 AI를 에쓰푸드에 맞게 사용할 수 있도록</strong> AX팀이 안내해드립니다.</div>
-          <div>지금부터 스크롤을 하며 하나씩 따라해보세요.</div>
+          <div class="hero-copy-line"><strong>AI를 조금 더 똑똑하게!, 우리 에쓰푸드에 맞게! 사용하는 법을 </strong>AX팀이 안내해드립니다.</div>
+          <div>아래로 스크롤 해보세요.</div>
         </div>
         <button onclick="navTo('llm')" class="orb scroll-cue" type="button">SCROLL ↓</button>
       </div>
@@ -331,11 +333,14 @@ button{font-family:inherit;cursor:pointer;}
     <!-- ══════════════ 01 LLM 지침 ══════════════ -->
     <section id="llm" class="section-inner" style="padding-top:96px;">
       <div class="orb" style="font-size:12px;font-weight:700;letter-spacing:.22em;color:#DFBA5E;">01 · GUIDANCE</div>
-      <h2 style="margin:10px 0 0;font-size:clamp(28px,4vw,38px);font-weight:900;color:#fff;letter-spacing:-.01em;">내 LLM별 지침</h2>
+      <h2 style="margin:10px 0 0;font-size:clamp(28px,4vw,38px);font-weight:900;color:#fff;letter-spacing:-.01em;">SFOOD용 LLM별 지침</h2>
       <div class="section-copy">
-        멍청한 답을 하지 않도록, 결과물이 가급적 일정하도록, 불필요한 과정을 만들지 않도록 하는 지침이에요.<br>
-        인터넷 상에 유명한 <strong>안드레 카파시의 기본 룰부터, 대화방식, 어투, 생각의 방식, 검증구조, 보안까지 모두 하나의 에쓰푸드만의 지침</strong>으로 만들었어요.<br>
-        자신이 사용중인 LLM에 적용해보세요.
+        LLM이 멍청한 답을 하지 않나요? 결과물이 물어볼 때마다 들쑥날쑥인가요? 시키지도 않은 것을 하고 있진 않나요?<br>
+        LLM은 사용자의 명령(프롬프트)로 작동하지만, 지침을 넣어두면 더 정확하고, 더 올바르게 일을 할 수 있습니다.<br><br>        
+        글로벌에서 많은 사람들이 사용중인 <strong>안드레 카파시의 기본 지침</strong>을 기반으로<br>
+        <strong class="marker-underline">대화법, 어투, 생각의 방식, 검증 구조, 보안까지 모두 모아서 에쓰푸드만의 지침</strong>으로 만들었어요.<br>
+        에쓰푸드의 기본적인 IT 시스템 담당자, 공장의 기본 정보들까지 미리 인식하도록 준비해두었습니다.<br>
+        지금 이 지침을 자신의 LLM에 적용해보세요.
       </div>
 
       <!-- ── Star Wars Crawl ── -->
@@ -466,7 +471,7 @@ button{font-family:inherit;cursor:pointer;}
             <div style="width:46px;height:46px;border-radius:10px;flex:none;overflow:hidden;background:#f5f0eb;display:flex;align-items:center;justify-content:center;">
               <img src="content/src/claude.png" style="width:38px;height:38px;object-fit:contain;" alt="Claude">
             </div>
-            <div><div style="font-size:18px;font-weight:700;color:#2B2B2B;">Claude</div><div style="font-size:12px;color:#9E9388;">Anthropic</div></div>
+            <div><div style="font-size:18px;font-weight:700;color:#2B2B2B;">Claude 용 지침</div><div style="font-size:12px;color:#9E9388;">Anthropic</div></div>
           </div>
           <div style="margin-top:18px;flex:1;"></div>
           <div style="margin-top:18px;">
@@ -484,7 +489,7 @@ button{font-family:inherit;cursor:pointer;}
             <div style="width:46px;height:46px;border-radius:10px;flex:none;overflow:hidden;background:#f5f5f5;display:flex;align-items:center;justify-content:center;">
               <img src="content/src/ChatGPT.png" style="width:38px;height:38px;object-fit:contain;" alt="ChatGPT">
             </div>
-            <div><div style="font-size:18px;font-weight:700;color:#2B2B2B;">ChatGPT</div><div style="font-size:12px;color:#9E9388;">OpenAI</div></div>
+            <div><div style="font-size:18px;font-weight:700;color:#2B2B2B;">ChatGPT 용 지침</div><div style="font-size:12px;color:#9E9388;">OpenAI</div></div>
           </div>
           <div style="margin-top:18px;flex:1;"></div>
           <div style="margin-top:18px;">
@@ -502,7 +507,7 @@ button{font-family:inherit;cursor:pointer;}
             <div style="width:46px;height:46px;border-radius:10px;flex:none;overflow:hidden;background:#f5f5f5;display:flex;align-items:center;justify-content:center;">
               <img src="content/src/gemini.webp" style="width:38px;height:38px;object-fit:contain;" alt="Gemini">
             </div>
-            <div><div style="font-size:18px;font-weight:700;color:#2B2B2B;">Gemini</div><div style="font-size:12px;color:#9E9388;">Google</div></div>
+            <div><div style="font-size:18px;font-weight:700;color:#2B2B2B;">Gemini 용 지침</div><div style="font-size:12px;color:#9E9388;">Google</div></div>
           </div>
           <div style="margin-top:18px;flex:1;"></div>
           <div style="margin-top:18px;">
@@ -525,7 +530,12 @@ button{font-family:inherit;cursor:pointer;}
         숫자를 조정하고 볼 땐 엑셀을, 보고서를 작성할 땐 워드를, 발표자료를 만들 땐 파워포인트를 쓰죠?<br>
         <strong>LLM은 모두 다 '마크다운'이라는 형태로 읽고, 저장합니다.</strong><br>
         확장자는 *.md 에요. 아주 간단한 서식만 있는 가볍고 빠른 문서 양식이고, 윈도우나 맥에서 메모장으로도 열 수 있어요.<br>
-        아니라면 마크다운 기반으로 작성되는 유명한 프로그램을 써보시는 것도 좋아요!
+        위의 지침도 마크다운이 기본 형태에요.<br><br>
+        LLM은 대화가 길어지면, 위에서 말한 내용을 잊어버려요. 그걸 '컨텍스트가 길어진다'라고들 말해요.<br>
+        매 번 대화할 때마다 기존의 내용을 반복해서 알려줘야하는 건 귀찮겠죠?<br>
+        앞으론 항상 '내용을 요약해서 항상 문서로 저장해줘!' 라고 요청하세요. 그러면 자동으로 마크다운 형태로 저장해요.<br>
+        아직 마크다운이 익숙치 않다면 노션이나 옵시디언 같은 마크다운 기반으로 작성되는 유명한 프로그램을 써보시는 것도 좋아요!<br>
+        이 툴들을 잘 활용하면 <strong>자신만의 지식 저장소</strong>로도 쓸 수 있답니다.
       </div>
       <div class="markdown-actions">
         <a class="markdown-empty-btn" href="https://www.notion.com/ko" target="_blank" rel="noopener noreferrer">노션(Notion) 써보기</a>
@@ -535,11 +545,12 @@ button{font-family:inherit;cursor:pointer;}
 
     <!-- ══════════════ 03 디자인 시스템 ══════════════ -->
     <section id="design" class="section-inner">
-      <div class="orb" style="font-size:12px;font-weight:700;letter-spacing:.22em;color:#DFBA5E;">03 · DESIGN SYSTEM</div>
+      <div class="orb" style="font-size:12px;font-weight:700;letter-spacing:.22em;color:#DFBA5E;">03 · DESIGN SYSTEM (웹/문서용)</div>
       <h2 style="margin:10px 0 0;font-size:clamp(28px,4vw,38px);font-weight:900;color:#fff;letter-spacing:-.01em;">전사 디자인 시스템</h2>
       <div class="section-copy">
         다른 LLM을 쓸때마다, 심지어 같은 LLM을 사용해도 디자인되는 웹페이지나 문서의 스타일이 제각각이죠?<br>
         S-Red를 기반으로 지정된 T&amp;M에 맞춰 디자인할 수 있는 LLM용 디자인 시스템 가이드에요.<br>
+        '어두운 배경에 적합한 에쓰푸드 로고를 넣어 줘' 라고 하면 자동으로 설정된 로고를 넣어주기도 한답니다.<br>
         <strong>워드를 만들 때도, 파워포인트를 만들 때도 적용할 수 있어요.</strong>
       </div>
       <div class="design-system-board">
@@ -650,7 +661,10 @@ button{font-family:inherit;cursor:pointer;}
         <div class="orb" style="font-size:12px;font-weight:700;letter-spacing:.22em;color:#E47674;">05 · SECURITY</div>
         <h2 style="margin:10px 0 0;font-size:clamp(26px,3.5vw,34px);font-weight:900;color:#fff;letter-spacing:-.01em;">⚠ 보안 가이드라인</h2>
         <div style="margin-top:18px;max-width:680px;font-size:15px;line-height:1.75;color:rgba(255,255,255,.72);">
-          보안은 무엇보다 중요합니다. 특히 개인 계정으로 사용 시 우리가 올리는 파일들은 LLM의 학습자료로 유출될 수 있습니다. 회사의 중요한 정보들을 LLM에게 직접 업로드하지 말아 주세요.
+          보안은 무엇보다 중요합니다.<br>
+          특히 개인 계정으로 사용 시 우리가 올리는 파일들은 LLM의 학습자료로 유출될 수 있습니다.<br>
+          회사의 중요한 정보들을 LLM에게 직접 업로드하지 말아 주세요.<br>
+          보다 자세한 사항은 아래의 링크를 클릭하여 확인해보세요!
         </div>
         <div class="security-grid">
           <div class="security-card"><div class="security-card-head"><span class="security-card-icon">🔒</span><span>민감정보 금지</span></div><div class="security-card-copy">고객·인사·미공개 정보는 입력하지 않기.</div></div>
