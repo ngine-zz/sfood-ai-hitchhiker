@@ -27,7 +27,7 @@ button{font-family:inherit;cursor:pointer;}
 :root{
   --ground:#16171f;--text:#fff;
   --accent:#DFBA5E;--accent2:#D5413E;
-  --gold:#C4882A;--gold-light:#DFBA5E;
+  --gold:#DFBA5E;--gold-light:#DFBA5E;
   --red-bright:#D73135;--red-pale:#F9DADA;
   --dark:#2B2B2B;--cream:#FCF0D6;--bg-light:#F4EFE6;
   --gray-200:#D4C9BC;--gray-400:#9E9388;--gray-600:#615850;--gray-800:#332D28;
@@ -136,8 +136,8 @@ button{font-family:inherit;cursor:pointer;}
 .btn-red-outline:hover{background:var(--red-pale);}
 .btn-red-fill{padding:10px;background:var(--accent2);border:none;color:#fff;border-radius:10px;font-size:13px;font-weight:700;transition:background .15s;}
 .btn-red-fill:hover{background:var(--red-bright);}
-.btn-gold{padding:12px 20px;background:var(--gold);border:none;border-radius:10px;font-size:14px;font-weight:700;color:#fff;transition:background .15s;}
-.btn-gold:hover{background:#8B5C1A;}
+.btn-gold{padding:12px 20px;background:var(--gold);border:none;border-radius:10px;font-size:14px;font-weight:700;color:#2B2B2B;transition:background .15s,color .15s;}
+.btn-gold:hover{background:#FCF0D6;color:#332D28;}
 .btn-gold-outline{padding:13px 24px;background:transparent;border:1.5px solid var(--accent);border-radius:10px;font-size:14px;font-weight:700;color:var(--accent);transition:background .15s,color .15s;}
 .btn-gold-outline:hover{background:var(--accent);color:var(--dark);}
 
@@ -165,7 +165,7 @@ button{font-family:inherit;cursor:pointer;}
 .design-core-cell{min-width:0;}
 .design-core-cell:nth-child(1),.design-core-cell:nth-child(2){padding-bottom:18px;border-bottom:1px solid #EAE3D9;}
 .design-core-cell:nth-child(odd){padding-right:22px;border-right:1px solid #EAE3D9;}
-.design-card-kicker{font-size:11px;letter-spacing:.12em;color:#C4882A;font-weight:800;}
+.design-card-kicker{font-size:11px;letter-spacing:.12em;color:#DFBA5E;font-weight:800;}
 .design-card-title{margin-top:8px;font-size:19px;font-weight:900;color:#2B2B2B;}
 .design-card-copy{margin-top:7px;font-size:13px;line-height:1.55;color:#615850;}
 .design-value-list{display:grid;gap:8px;margin-top:13px;}
@@ -530,7 +530,7 @@ button{font-family:inherit;cursor:pointer;}
         <strong>LLM은 모두 다 '마크다운'이라는 형태로 읽고, 저장합니다.</strong><br>
         확장자는 *.md 에요. 아주 간단한 서식만 있는 가볍고 빠른 문서 양식이고, 윈도우나 맥에서 메모장으로도 열 수 있어요.<br>
         위의 지침도 마크다운이 기본 형태에요.<br><br>
-        LLM은 대화가 길어지면, 위에서 말한 내용을 잊어버려요. 그걸 '컨텍스트가 길어진다'라고들 말해요.<br>
+        <strong class="marker-underline">LLM은 대화가 길어지면, 위에서 말한 내용을 잊어버려요.</strong> 그걸 '컨텍스트가 길어진다'라고들 말해요.<br>
         매 번 대화할 때마다 기존의 내용을 반복해서 알려줘야하는 건 귀찮겠죠?<br>
         앞으론 항상 '내용을 요약해서 항상 문서로 저장해줘!' 라고 요청하세요. 그러면 자동으로 마크다운 형태로 저장해요.<br>
         아직 마크다운이 익숙치 않다면 노션이나 옵시디언 같은 마크다운 기반으로 작성되는 유명한 프로그램을 써보시는 것도 좋아요!<br>
@@ -549,7 +549,7 @@ button{font-family:inherit;cursor:pointer;}
       <div class="section-copy">
         다른 LLM을 쓸때마다, 심지어 같은 LLM을 사용해도 디자인되는 웹페이지나 문서의 스타일이 제각각이죠?<br>
         S-Red를 기반으로 지정된 T&amp;M에 맞춰 디자인할 수 있는 LLM용 디자인 시스템 가이드에요.<br>
-        '어두운 배경에 적합한 에쓰푸드 로고를 넣어 줘' 라고 하면 자동으로 설정된 로고를 넣어주기도 한답니다.<br>
+        <strong class="marker-underline">'어두운 배경에 적합한 에쓰푸드 로고를 넣어 줘' 라고 하면 자동으로 설정된 로고를 넣어주기도 한답니다.</strong><br>
         <strong>워드를 만들 때도, 파워포인트를 만들 때도 적용할 수 있어요.</strong>
       </div>
       <div class="design-system-board">
@@ -572,9 +572,9 @@ button{font-family:inherit;cursor:pointer;}
               <div class="palette-swatch" style="background:#D5413E;">S-Red<br>#D5413E</div>
               <div class="palette-swatch light" style="background:#FCF0D6;">Cream<br>#FCF0D6</div>
               <div class="palette-swatch" style="background:#2B2B2B;">Dark<br>#2B2B2B</div>
-              <div class="palette-swatch" style="background:#C4882A;">Gold<br>#C4882A</div>
+              <div class="palette-swatch light" style="background:#DFBA5E;">Gold Light<br>#DFBA5E</div>
             </div>
-            <div class="design-card-copy">Red Bright, Red Dark, Gray, Success 등 확장 색상은 강조와 상태 표시에만 사용합니다.</div>
+            <div class="design-card-copy">Gold Light는 CTA와 다크 배경 위 강조 텍스트에 사용하고, Semantic 색상은 상태 표시에만 사용합니다.</div>
           </div>
           <div class="design-core-cell">
             <div class="design-card-kicker">FONT STYLE</div>

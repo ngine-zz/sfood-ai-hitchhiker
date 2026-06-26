@@ -39,9 +39,7 @@ BG Dark      #2B2B2B    ★ 어두운 배경 (헤더, 커버, 다크 섹션)
 
 ```
 Warm Gold (Cream 팔레트 기반 Secondary) ────────
-Gold Dark    #8B5C1A
-Gold         #C4882A    (버튼 CTA, 강조 텍스트)
-Gold Light   #DFBA5E    (다크 배경 위 강조 텍스트)
+Gold Light   #DFBA5E    (버튼 CTA, 강조 텍스트)
 Gold Pale    #FCF0D6    (= Cream)
 
 Warm Neutral (레드 온기에 맞춘 웜 그레이) ──────
@@ -56,7 +54,6 @@ Black        #2B2B2B    (= BG Dark)
 
 Semantic (상태 표시 전용 — 장식 사용 금지) ────
 Success      #4E7A52    (완료, 승인 — 웜 어스 그린)
-Warning      #C47828    (주의 — 웜 앰버)
 Error        #A83230    (오류 — = Red Dark)
 Info         #3A6A8C    (안내 — 웜 스틸 블루)
 ```
