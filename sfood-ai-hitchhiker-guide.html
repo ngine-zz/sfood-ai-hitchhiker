@@ -46,33 +46,85 @@ button{font-family:inherit;cursor:pointer;}
 @keyframes textshine{from{background-position:240% 0}to{background-position:-60% 0}}
 @keyframes spin{to{transform:rotate(360deg)}}
 @keyframes scrollglow{0%,100%{opacity:.78;text-shadow:0 0 8px rgba(255,255,255,.35),0 0 16px rgba(223,186,94,.18)}50%{opacity:1;text-shadow:0 0 14px rgba(255,255,255,.75),0 0 28px rgba(223,186,94,.42)}}
+@keyframes starDrift{from{transform:translate3d(0,0,0)}to{transform:translate3d(-90px,120px,0)}}
+@keyframes sparklePulse{0%,100%{opacity:.28;filter:drop-shadow(0 0 2px rgba(255,255,255,.25))}42%{opacity:.9;filter:drop-shadow(0 0 7px rgba(255,255,255,.8))}62%{opacity:.48;filter:drop-shadow(0 0 3px rgba(223,186,94,.36))}}
 
 /* ── Cosmos layers ── */
+.stellar-backdrop{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;background:
+  radial-gradient(circle at 22% 18%,rgba(213,65,62,.09),transparent 28%),
+  radial-gradient(circle at 80% 32%,rgba(223,186,94,.08),transparent 26%),
+  radial-gradient(circle at 44% 82%,rgba(58,106,140,.08),transparent 30%);}
+.stellar-backdrop::before,.stellar-backdrop::after{content:'';position:absolute;inset:-12%;background-repeat:repeat;will-change:transform,opacity;}
+.stellar-backdrop::before{
+  background-image:radial-gradient(1px 1px at 28px 36px,rgba(255,255,255,.9),transparent),
+    radial-gradient(1.2px 1.2px at 150px 92px,rgba(255,255,255,.72),transparent),
+    radial-gradient(1px 1px at 230px 180px,rgba(223,186,94,.76),transparent),
+    radial-gradient(1.1px 1.1px at 340px 62px,rgba(255,255,255,.7),transparent),
+    radial-gradient(1px 1px at 420px 250px,rgba(228,118,116,.68),transparent),
+    radial-gradient(1.2px 1.2px at 540px 145px,rgba(255,255,255,.8),transparent),
+    radial-gradient(.8px .8px at 95px 245px,rgba(255,255,255,.58),transparent),
+    radial-gradient(.9px .9px at 305px 335px,rgba(255,255,255,.62),transparent),
+    radial-gradient(.8px .8px at 470px 35px,rgba(223,186,94,.5),transparent),
+    radial-gradient(.7px .7px at 25px 305px,rgba(255,255,255,.44),transparent),
+    radial-gradient(.7px .7px at 205px 25px,rgba(255,255,255,.5),transparent),
+    radial-gradient(.8px .8px at 390px 190px,rgba(255,255,255,.48),transparent),
+    radial-gradient(.6px .6px at 570px 330px,rgba(255,255,255,.42),transparent),
+    radial-gradient(.7px .7px at 610px 80px,rgba(223,186,94,.36),transparent);
+  background-size:620px 420px,540px 380px,680px 520px,760px 460px,590px 430px,700px 500px,280px 230px,320px 260px,360px 270px,260px 230px,300px 240px,340px 290px,380px 300px,420px 320px;
+  animation:starDrift 58s linear infinite;}
+.stellar-backdrop::after{
+  background-image:radial-gradient(2.2px 2.2px at 72px 90px,#fff,transparent),
+    radial-gradient(1.8px 1.8px at 260px 150px,rgba(255,255,255,.96),transparent),
+    radial-gradient(2px 2px at 410px 310px,rgba(223,186,94,.95),transparent),
+    radial-gradient(1.7px 1.7px at 560px 70px,rgba(255,255,255,.88),transparent),
+    radial-gradient(1.4px 1.4px at 180px 280px,rgba(255,255,255,.72),transparent),
+    radial-gradient(1.3px 1.3px at 470px 215px,rgba(255,255,255,.7),transparent),
+    radial-gradient(1.1px 1.1px at 340px 45px,rgba(255,255,255,.62),transparent),
+    radial-gradient(1.2px 1.2px at 45px 255px,rgba(223,186,94,.58),transparent),
+    radial-gradient(1px 1px at 610px 330px,rgba(255,255,255,.58),transparent);
+  background-size:420px 300px,500px 350px,560px 420px,460px 320px,360px 270px,420px 310px,330px 250px,390px 290px,450px 330px;
+  animation:sparklePulse 3.6s ease-in-out infinite;}
 .cosmos-dust{position:absolute;inset:0;opacity:.85;pointer-events:none;background-repeat:repeat;
   background-image:radial-gradient(.8px .8px at 50px 70px,rgba(255,255,255,.5),transparent),
     radial-gradient(.7px .7px at 160px 30px,rgba(255,255,255,.42),transparent),
     radial-gradient(.8px .8px at 110px 170px,rgba(255,255,255,.42),transparent),
     radial-gradient(.7px .7px at 210px 120px,rgba(255,255,255,.36),transparent),
-    radial-gradient(.7px .7px at 20px 130px,rgba(255,255,255,.36),transparent);
-  background-size:180px 180px,150px 150px,200px 200px,170px 170px,140px 140px;}
+    radial-gradient(.7px .7px at 20px 130px,rgba(255,255,255,.36),transparent),
+    radial-gradient(.6px .6px at 95px 20px,rgba(255,255,255,.32),transparent),
+    radial-gradient(.6px .6px at 260px 85px,rgba(255,255,255,.34),transparent),
+    radial-gradient(.7px .7px at 300px 210px,rgba(223,186,94,.3),transparent),
+    radial-gradient(.5px .5px at 40px 40px,rgba(255,255,255,.32),transparent),
+    radial-gradient(.5px .5px at 130px 110px,rgba(255,255,255,.3),transparent),
+    radial-gradient(.6px .6px at 225px 175px,rgba(255,255,255,.28),transparent),
+    radial-gradient(.5px .5px at 345px 35px,rgba(255,255,255,.3),transparent);
+  background-size:150px 150px,125px 125px,170px 170px,145px 145px,115px 115px,95px 95px,150px 150px,175px 175px,85px 85px,105px 105px,135px 135px,160px 160px;}
 .cosmos-stars{position:absolute;inset:0;pointer-events:none;background-repeat:repeat;
   background-image:radial-gradient(1.1px 1.1px at 30px 40px,rgba(255,255,255,.95),transparent),
     radial-gradient(1px 1px at 130px 90px,rgba(255,255,255,.75),transparent),
     radial-gradient(1.3px 1.3px at 200px 160px,rgba(255,255,255,.9),transparent),
     radial-gradient(1px 1px at 90px 200px,rgba(223,186,94,.8),transparent),
     radial-gradient(1px 1px at 240px 60px,rgba(255,255,255,.7),transparent),
-    radial-gradient(1.2px 1.2px at 60px 150px,rgba(255,255,255,.8),transparent);
-  background-size:270px 270px,330px 330px,380px 380px,300px 300px,250px 250px,360px 360px;}
+    radial-gradient(1.2px 1.2px at 60px 150px,rgba(255,255,255,.8),transparent),
+    radial-gradient(.9px .9px at 170px 240px,rgba(255,255,255,.66),transparent),
+    radial-gradient(.9px .9px at 315px 40px,rgba(255,255,255,.62),transparent),
+    radial-gradient(.8px .8px at 20px 250px,rgba(228,118,116,.48),transparent),
+    radial-gradient(.8px .8px at 360px 210px,rgba(255,255,255,.58),transparent),
+    radial-gradient(.7px .7px at 115px 315px,rgba(255,255,255,.54),transparent),
+    radial-gradient(.8px .8px at 430px 95px,rgba(223,186,94,.46),transparent),
+    radial-gradient(.7px .7px at 520px 270px,rgba(255,255,255,.5),transparent);
+  background-size:220px 220px,270px 270px,310px 310px,245px 245px,205px 205px,290px 290px,180px 180px,250px 250px,230px 230px,260px 260px,210px 210px,280px 280px,320px 320px;}
 .cosmos-tw{position:absolute;inset:0;pointer-events:none;animation:twinkle 3.2s ease-in-out infinite;background-repeat:repeat;
   background-image:radial-gradient(1.6px 1.6px at 70px 60px,#fff,transparent),
     radial-gradient(1.6px 1.6px at 230px 140px,#fff,transparent),
-    radial-gradient(1.5px 1.5px at 150px 230px,rgba(223,186,94,.95),transparent);
-  background-size:340px 340px,400px 400px,300px 300px;}
+    radial-gradient(1.5px 1.5px at 150px 230px,rgba(223,186,94,.95),transparent),
+    radial-gradient(1.2px 1.2px at 305px 75px,rgba(255,255,255,.75),transparent);
+  background-size:340px 340px,400px 400px,300px 300px,260px 260px;}
 .cosmos-tw2{position:absolute;inset:0;pointer-events:none;animation:twinkle 4.8s ease-in-out infinite .9s;background-repeat:repeat;
   background-image:radial-gradient(1.9px 1.9px at 120px 90px,#fff,transparent),
     radial-gradient(1.6px 1.6px at 280px 200px,rgba(255,255,255,.9),transparent),
-    radial-gradient(1.7px 1.7px at 40px 180px,rgba(228,118,116,.9),transparent);
-  background-size:430px 430px,480px 480px,380px 380px;}
+    radial-gradient(1.7px 1.7px at 40px 180px,rgba(228,118,116,.9),transparent),
+    radial-gradient(1.3px 1.3px at 350px 310px,rgba(223,186,94,.72),transparent);
+  background-size:430px 430px,480px 480px,380px 380px,360px 360px;}
 .cosmos-bright{position:absolute;inset:0;pointer-events:none;background-repeat:repeat;
   filter:drop-shadow(0 0 4px rgba(255,255,255,.65));animation:twinkle 5.5s ease-in-out infinite 1.4s;
   background-image:radial-gradient(2px 2px at 60px 80px,#fff,transparent),
@@ -81,6 +133,79 @@ button{font-family:inherit;cursor:pointer;}
     radial-gradient(2.2px 2.2px at 440px 120px,rgba(228,118,116,.95),transparent),
     radial-gradient(1.8px 1.8px at 520px 360px,rgba(127,176,206,.9),transparent);
   background-size:520px 520px,600px 600px,560px 560px,640px 640px,700px 700px;}
+.cosmos-bright-2{position:absolute;inset:0;pointer-events:none;background-repeat:repeat;
+  filter:drop-shadow(0 0 5px rgba(255,255,255,.58));animation:twinkle 4.2s ease-in-out infinite .45s;
+  background-image:radial-gradient(1.8px 1.8px at 88px 52px,rgba(255,255,255,.95),transparent),
+    radial-gradient(1.7px 1.7px at 220px 170px,rgba(255,255,255,.82),transparent),
+    radial-gradient(2px 2px at 365px 260px,rgba(223,186,94,.9),transparent),
+    radial-gradient(1.8px 1.8px at 510px 104px,rgba(255,255,255,.86),transparent),
+    radial-gradient(1.6px 1.6px at 630px 340px,rgba(228,118,116,.72),transparent);
+  background-size:430px 430px,520px 520px,480px 480px,560px 560px,620px 620px;}
+.cosmos-tw3{position:absolute;inset:0;pointer-events:none;animation:twinkle 3.7s ease-in-out infinite 1.1s;background-repeat:repeat;
+  background-image:radial-gradient(1.5px 1.5px at 52px 104px,rgba(255,255,255,.88),transparent),
+    radial-gradient(1.4px 1.4px at 178px 38px,rgba(255,255,255,.74),transparent),
+    radial-gradient(1.6px 1.6px at 292px 214px,rgba(223,186,94,.78),transparent),
+    radial-gradient(1.3px 1.3px at 404px 126px,rgba(255,255,255,.72),transparent),
+    radial-gradient(1.4px 1.4px at 548px 286px,rgba(255,255,255,.7),transparent);
+  background-size:260px 260px,310px 310px,360px 360px,410px 410px,470px 470px;}
+.cosmos-extra{position:absolute;inset:0;pointer-events:none;opacity:.95;background-repeat:repeat;
+  background-image:radial-gradient(.9px .9px at 18px 22px,rgba(255,255,255,.72),transparent),
+    radial-gradient(.8px .8px at 74px 118px,rgba(255,255,255,.56),transparent),
+    radial-gradient(.7px .7px at 138px 46px,rgba(255,255,255,.5),transparent),
+    radial-gradient(.8px .8px at 196px 162px,rgba(223,186,94,.45),transparent),
+    radial-gradient(.6px .6px at 252px 82px,rgba(255,255,255,.44),transparent),
+    radial-gradient(.7px .7px at 315px 214px,rgba(255,255,255,.5),transparent),
+    radial-gradient(.6px .6px at 382px 132px,rgba(255,255,255,.42),transparent),
+    radial-gradient(.8px .8px at 448px 34px,rgba(255,255,255,.58),transparent),
+    radial-gradient(.7px .7px at 516px 188px,rgba(228,118,116,.38),transparent),
+    radial-gradient(.6px .6px at 590px 96px,rgba(255,255,255,.42),transparent),
+    radial-gradient(.8px .8px at 654px 246px,rgba(255,255,255,.52),transparent),
+    radial-gradient(.6px .6px at 712px 144px,rgba(223,186,94,.36),transparent);
+  background-size:130px 130px,145px 145px,160px 160px,175px 175px,190px 190px,205px 205px,220px 220px,235px 235px,250px 250px,265px 265px,280px 280px,295px 295px;}
+.cosmos-extra-2{position:absolute;inset:0;pointer-events:none;opacity:.78;background-repeat:repeat;transform:translate3d(17px,29px,0);
+  background-image:radial-gradient(.8px .8px at 34px 62px,rgba(255,255,255,.62),transparent),
+    radial-gradient(.7px .7px at 96px 18px,rgba(255,255,255,.48),transparent),
+    radial-gradient(.8px .8px at 154px 134px,rgba(255,255,255,.54),transparent),
+    radial-gradient(.6px .6px at 218px 48px,rgba(223,186,94,.34),transparent),
+    radial-gradient(.7px .7px at 286px 176px,rgba(255,255,255,.5),transparent),
+    radial-gradient(.6px .6px at 344px 96px,rgba(255,255,255,.4),transparent),
+    radial-gradient(.8px .8px at 406px 228px,rgba(255,255,255,.56),transparent),
+    radial-gradient(.6px .6px at 482px 72px,rgba(228,118,116,.32),transparent),
+    radial-gradient(.7px .7px at 548px 156px,rgba(255,255,255,.46),transparent),
+    radial-gradient(.6px .6px at 624px 42px,rgba(255,255,255,.4),transparent),
+    radial-gradient(.8px .8px at 690px 204px,rgba(223,186,94,.36),transparent),
+    radial-gradient(.7px .7px at 748px 112px,rgba(255,255,255,.44),transparent);
+  background-size:118px 118px,136px 136px,154px 154px,172px 172px,188px 188px,206px 206px,224px 224px,242px 242px,260px 260px,278px 278px,296px 296px,314px 314px;}
+.cosmos-extra-3{position:absolute;inset:0;pointer-events:none;opacity:.72;background-repeat:repeat;transform:translate3d(-23px,41px,0);
+  background-image:radial-gradient(.8px .8px at 42px 26px,rgba(255,255,255,.58),transparent),
+    radial-gradient(.6px .6px at 108px 96px,rgba(255,255,255,.4),transparent),
+    radial-gradient(.7px .7px at 168px 184px,rgba(223,186,94,.34),transparent),
+    radial-gradient(.8px .8px at 236px 74px,rgba(255,255,255,.52),transparent),
+    radial-gradient(.6px .6px at 302px 212px,rgba(255,255,255,.38),transparent),
+    radial-gradient(.7px .7px at 372px 124px,rgba(255,255,255,.46),transparent),
+    radial-gradient(.6px .6px at 438px 28px,rgba(228,118,116,.3),transparent),
+    radial-gradient(.8px .8px at 506px 176px,rgba(255,255,255,.5),transparent),
+    radial-gradient(.6px .6px at 572px 82px,rgba(255,255,255,.38),transparent),
+    radial-gradient(.7px .7px at 638px 236px,rgba(223,186,94,.32),transparent),
+    radial-gradient(.6px .6px at 704px 152px,rgba(255,255,255,.4),transparent),
+    radial-gradient(.8px .8px at 766px 52px,rgba(255,255,255,.5),transparent);
+  background-size:112px 112px,128px 128px,146px 146px,164px 164px,182px 182px,200px 200px,218px 218px,236px 236px,254px 254px,272px 272px,290px 290px,308px 308px;}
+.cosmos-extra-4{position:absolute;inset:0;pointer-events:none;opacity:.66;background-repeat:repeat;transform:translate3d(39px,-19px,0);
+  background-image:radial-gradient(.7px .7px at 28px 88px,rgba(255,255,255,.48),transparent),
+    radial-gradient(.8px .8px at 92px 34px,rgba(255,255,255,.54),transparent),
+    radial-gradient(.6px .6px at 158px 142px,rgba(255,255,255,.36),transparent),
+    radial-gradient(.7px .7px at 224px 226px,rgba(223,186,94,.3),transparent),
+    radial-gradient(.6px .6px at 292px 58px,rgba(255,255,255,.38),transparent),
+    radial-gradient(.8px .8px at 356px 188px,rgba(255,255,255,.5),transparent),
+    radial-gradient(.6px .6px at 426px 108px,rgba(255,255,255,.36),transparent),
+    radial-gradient(.7px .7px at 492px 246px,rgba(228,118,116,.28),transparent),
+    radial-gradient(.8px .8px at 558px 136px,rgba(255,255,255,.48),transparent),
+    radial-gradient(.6px .6px at 626px 44px,rgba(255,255,255,.34),transparent),
+    radial-gradient(.7px .7px at 692px 214px,rgba(223,186,94,.3),transparent),
+    radial-gradient(.6px .6px at 758px 118px,rgba(255,255,255,.36),transparent);
+  background-size:124px 124px,142px 142px,158px 158px,176px 176px,194px 194px,212px 212px,230px 230px,248px 248px,266px 266px,284px 284px,302px 302px,320px 320px;}
+.stellar-backdrop::before,.stellar-backdrop::after{display:none;}
+.starfield-canvas{position:fixed;inset:0;z-index:0;width:100vw;height:100vh;pointer-events:none;}
 .milkyway{position:absolute;transform:rotate(-24deg);filter:blur(3px);pointer-events:none;
   background:radial-gradient(48% 13% at 50% 50%,rgba(255,250,240,.14),rgba(196,136,42,.07) 50%,transparent 72%),
     radial-gradient(34% 9% at 44% 47%,rgba(255,255,255,.15),transparent 62%),
@@ -171,6 +296,9 @@ button{font-family:inherit;cursor:pointer;}
 .design-value-list{display:grid;gap:8px;margin-top:13px;}
 .design-value{display:grid;grid-template-columns:74px 1fr;gap:10px;align-items:start;font-size:12px;line-height:1.45;color:#615850;}
 .design-value strong{color:#332D28;font-size:13px;}
+.design-mini-list{display:grid;gap:7px;margin-top:12px;}
+.design-mini-item{display:grid;grid-template-columns:82px 1fr;gap:10px;align-items:start;padding:8px 10px;border-radius:10px;background:#F4EFE6;border:1px solid #EAE3D9;font-size:12px;line-height:1.45;color:#615850;}
+.design-mini-item strong{color:#332D28;font-size:12.5px;}
 .palette-row{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin-top:14px;}
 .palette-swatch{min-height:58px;border-radius:12px;padding:8px;border:1px solid rgba(212,201,188,.65);display:flex;flex-direction:column;justify-content:flex-end;font-size:10px;font-weight:800;color:#fff;box-shadow:inset 0 -24px 34px rgba(0,0,0,.18);}
 .palette-swatch.light{color:#332D28;box-shadow:inset 0 -24px 34px rgba(255,255,255,.3);}
@@ -200,7 +328,6 @@ button{font-family:inherit;cursor:pointer;}
 .footer-b612 img{display:block;width:calc(100% + 3px);height:auto;transform:translateX(-3px);}
 @media(max-width:960px){
   .site-nav{padding:12px 18px!important;}
-  .brand-title,.brand-divider{display:none!important;}
   .hamburger{display:inline-flex;}
   .gnb{display:none!important;position:absolute;top:100%;left:12px;right:12px;flex-direction:column;align-items:stretch!important;gap:4px!important;padding:10px;background:rgba(21,22,29,.96);border:1px solid rgba(255,255,255,.1);border-radius:14px;box-shadow:0 18px 46px rgba(0,0,0,.42);}
   .site-nav.open .gnb{display:flex!important;}
@@ -221,8 +348,7 @@ button{font-family:inherit;cursor:pointer;}
 
 /* ── Star Wars Crawl ── */
 .crawl-wrap{position:relative;height:189px;overflow:hidden;margin-top:36px;}
-.crawl-wrap::before{content:'';position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(90deg,rgba(21,22,29,.9),transparent 16%,transparent 84%,rgba(21,22,29,.9));}
-.crawl-wrap::after{content:'';position:absolute;top:0;left:0;right:0;height:68%;background:linear-gradient(to bottom,#15161D 0%,transparent 100%);pointer-events:none;z-index:3;}
+.crawl-wrap::before,.crawl-wrap::after{content:none;}
 .crawl-stage{position:absolute;inset:0;clip-path:polygon(19% 0,81% 0,100% 100%,0 100%);}
 .crawl-inner{position:absolute;top:0;width:112%;left:-6%;text-align:center;animation:swcrawl var(--crawl-duration,120s) linear infinite;}
 .crawl-inner .c-title{font-size:22px;font-weight:900;letter-spacing:.1em;color:#fff;margin:0 0 1.2em;}
@@ -246,12 +372,10 @@ button{font-family:inherit;cursor:pointer;}
 
 <div id="top" style="position:relative;overflow-x:hidden;background:linear-gradient(180deg,#16171f 0%,#1b1c25 35%,#17181f 70%,#14151b 100%);">
 
+  <div class="stellar-backdrop" aria-hidden="true"></div>
+
   <!-- page-wide cosmos -->
-  <div class="cosmos-dust"></div>
-  <div class="cosmos-stars"></div>
-  <div class="cosmos-tw"></div>
-  <div class="cosmos-tw2"></div>
-  <div class="cosmos-bright"></div>
+  <canvas id="starfieldCanvas" class="starfield-canvas" aria-hidden="true"></canvas>
 
   <!-- drifting background galaxies -->
   <div id="bgPlanetA" style="position:absolute;top:1700px;right:-90px;width:460px;height:460px;z-index:1;opacity:.6;pointer-events:none;">
@@ -268,17 +392,14 @@ button{font-family:inherit;cursor:pointer;}
     <nav id="siteNav" class="site-nav" style="position:sticky;top:0;z-index:40;display:flex;align-items:center;justify-content:space-between;padding:14px 40px;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);background:rgba(21,22,29,.75);border-bottom:1px solid rgba(255,255,255,.07);">
       <button onclick="navTo('top')" style="display:flex;align-items:center;gap:10px;background:none;border:none;padding:0;">
         <span class="sfood-logo" style="height:14px;width:66px;" aria-label="SFOOD"></span>
-        <span class="brand-divider" style="width:1px;height:15px;background:rgba(255,255,255,.25);"></span>
-        <span class="brand-title" style="font-size:13px;color:rgba(255,255,255,.65);">AI히치하이커 안내서</span>
       </button>
       <button class="hamburger" type="button" onclick="toggleMenu()" aria-label="메뉴 열기" aria-expanded="false" aria-controls="gnbMenu"><span></span><span></span><span></span></button>
       <div id="gnbMenu" class="gnb" style="display:flex;gap:6px;flex-wrap:wrap;align-items:center;">
-        <button onclick="navTo('llm')" class="navbtn" style="background:transparent;border:none;color:rgba(255,255,255,.82);font-size:13.5px;padding:8px 12px;border-radius:8px;">LLM 지침</button>
-        <button onclick="navTo('markdown')" class="navbtn" style="background:transparent;border:none;color:rgba(255,255,255,.82);font-size:13.5px;padding:8px 12px;border-radius:8px;">마크다운</button>
-        <button onclick="navTo('design')" class="navbtn" style="background:transparent;border:none;color:rgba(255,255,255,.82);font-size:13.5px;padding:8px 12px;border-radius:8px;">디자인 시스템</button>
-        <button onclick="navTo('apply')" class="navbtn" style="background:transparent;border:none;color:rgba(255,255,255,.82);font-size:13.5px;padding:8px 12px;border-radius:8px;">적용하는 법</button>
-        <button onclick="navTo('security')" class="navbtn" style="background:transparent;border:none;color:rgba(255,255,255,.82);font-size:13.5px;padding:8px 12px;border-radius:8px;">보안</button>
-        <button onclick="navTo('skills')" class="navbtn" style="background:transparent;border:none;color:rgba(255,255,255,.82);font-size:13.5px;padding:8px 12px;border-radius:8px;">갖다쓰기</button>
+        <a href="sfood-ai-hitchhiker-guide.html" class="navbtn" style="display:inline-flex;align-items:center;text-decoration:none;background:transparent;border:none;color:rgba(255,255,255,.82);font-size:13.5px;padding:8px 12px;border-radius:8px;">AI 온보딩</a>
+        <a href="ui-ux-glossary.html" class="navbtn" style="display:inline-flex;align-items:center;text-decoration:none;background:transparent;border:none;color:rgba(255,255,255,.82);font-size:13.5px;padding:8px 12px;border-radius:8px;">UI/UX 용어 사전</a>
+        <a href="design-free.html" class="navbtn" style="display:inline-flex;align-items:center;text-decoration:none;background:transparent;border:none;color:rgba(255,255,255,.82);font-size:13.5px;padding:8px 12px;border-radius:8px;">Design Free</a>
+        <a href="ip-domain.html" class="navbtn" style="display:inline-flex;align-items:center;text-decoration:none;background:transparent;border:none;color:rgba(255,255,255,.82);font-size:13.5px;padding:8px 12px;border-radius:8px;">IP/도메인 관리</a>
+        <a href="sfood-db.html" class="navbtn" style="display:inline-flex;align-items:center;text-decoration:none;background:transparent;border:none;color:rgba(255,255,255,.82);font-size:13.5px;padding:8px 12px;border-radius:8px;">SFOOD DB</a>
         <a href="https://sfoodxproject.atlassian.net/wiki/x/QQHDAw" target="_blank" rel="noopener noreferrer" class="navbtn navbtn-gold" style="display:inline-flex;align-items:center;background:transparent;border:1px solid rgba(223,186,94,.5);color:#DFBA5E;font-size:13.5px;padding:8px 14px;border-radius:8px;">AI Wiki ↗</a>
       </div>
     </nav>
@@ -315,15 +436,15 @@ button{font-family:inherit;cursor:pointer;}
           <!-- ring back half -->
           <div style="position:absolute;left:50%;top:50%;width:1040px;height:300px;transform:translate(-50%,-50%) rotate(-20deg);
             background:conic-gradient(from -45deg at 50% 50%,rgba(240,216,140,.12),rgba(223,186,94,.85) 18%,rgba(196,136,42,.45) 42%,rgba(240,216,140,.9) 68%,rgba(223,186,94,.18) 100%);
-            -webkit-mask:radial-gradient(closest-side ellipse at 50% 50%,transparent 0 50%,#000 53% 60%,transparent 62% 67%,#000 70% 78%,transparent 81%);
-            mask:radial-gradient(closest-side ellipse at 50% 50%,transparent 0 50%,#000 53% 60%,transparent 62% 67%,#000 70% 78%,transparent 81%);"></div>
+            -webkit-mask:radial-gradient(closest-side ellipse at 50% 50%,transparent 0 48%,#000 51% 57%,transparent 59% 61.5%,rgba(0,0,0,.74) 62.5% 64%,transparent 66% 69.5%,rgba(0,0,0,.5) 71% 74.5%,transparent 76% 78.5%,rgba(0,0,0,.28) 80% 84%,transparent 89%);
+            mask:radial-gradient(closest-side ellipse at 50% 50%,transparent 0 48%,#000 51% 57%,transparent 59% 61.5%,rgba(0,0,0,.74) 62.5% 64%,transparent 66% 69.5%,rgba(0,0,0,.5) 71% 74.5%,transparent 76% 78.5%,rgba(0,0,0,.28) 80% 84%,transparent 89%);"></div>
           <!-- AI text sphere -->
           <div id="aiSphere" style="position:absolute;top:140px;left:140px;width:540px;height:540px;perspective:1100px;transform:rotate(-20deg);"></div>
           <!-- ring front half (clips over sphere) -->
           <div style="position:absolute;left:50%;top:50%;width:1040px;height:300px;transform:translate(-50%,-50%) rotate(-20deg);
             background:conic-gradient(from -45deg at 50% 50%,rgba(240,216,140,.18),rgba(223,186,94,1) 18%,rgba(196,136,42,.6) 42%,rgba(240,216,140,1) 68%,rgba(223,186,94,.28) 100%);
-            -webkit-mask:radial-gradient(closest-side ellipse at 50% 50%,transparent 0 50%,#000 53% 60%,transparent 62% 67%,#000 70% 78%,transparent 81%);
-            mask:radial-gradient(closest-side ellipse at 50% 50%,transparent 0 50%,#000 53% 60%,transparent 62% 67%,#000 70% 78%,transparent 81%);
+            -webkit-mask:radial-gradient(closest-side ellipse at 50% 50%,transparent 0 48%,#000 51% 57%,transparent 59% 61.5%,rgba(0,0,0,.74) 62.5% 64%,transparent 66% 69.5%,rgba(0,0,0,.5) 71% 74.5%,transparent 76% 78.5%,rgba(0,0,0,.28) 80% 84%,transparent 89%);
+            mask:radial-gradient(closest-side ellipse at 50% 50%,transparent 0 48%,#000 51% 57%,transparent 59% 61.5%,rgba(0,0,0,.74) 62.5% 64%,transparent 66% 69.5%,rgba(0,0,0,.5) 71% 74.5%,transparent 76% 78.5%,rgba(0,0,0,.28) 80% 84%,transparent 89%);
             clip-path:inset(45% 0 0 0);"></div>
         </div>
       </div>
@@ -530,7 +651,7 @@ button{font-family:inherit;cursor:pointer;}
         <strong>LLM은 모두 다 '마크다운'이라는 형태로 읽고, 저장합니다.</strong><br>
         확장자는 *.md 에요. 아주 간단한 서식만 있는 가볍고 빠른 문서 양식이고, 윈도우나 맥에서 메모장으로도 열 수 있어요.<br>
         위의 지침도 마크다운이 기본 형태에요.<br><br>
-        <strong class="marker-underline">LLM은 대화가 길어지면, 위에서 말한 내용을 잊어버려요.</strong> 그걸 '컨텍스트가 길어진다'라고들 말해요.<br>
+        <strong class="marker-underline">LLM은 대화가 길어지면, 오래된 내용부터 순서대로 잊어버려요.</strong> 그걸 '컨텍스트가 길어진다'라고들 말해요.<br>
         매 번 대화할 때마다 기존의 내용을 반복해서 알려줘야하는 건 귀찮겠죠?<br>
         앞으론 항상 '내용을 요약해서 항상 문서로 저장해줘!' 라고 요청하세요. 그러면 자동으로 마크다운 형태로 저장해요.<br>
         아직 마크다운이 익숙치 않다면 노션이나 옵시디언 같은 마크다운 기반으로 작성되는 유명한 프로그램을 써보시는 것도 좋아요!<br>
@@ -548,8 +669,7 @@ button{font-family:inherit;cursor:pointer;}
       <h2 style="margin:10px 0 0;font-size:clamp(28px,4vw,38px);font-weight:900;color:#fff;letter-spacing:-.01em;">전사 디자인 시스템</h2>
       <div class="section-copy">
         다른 LLM을 쓸때마다, 심지어 같은 LLM을 사용해도 디자인되는 웹페이지나 문서의 스타일이 제각각이죠?<br>
-        S-Red를 기반으로 지정된 T&amp;M에 맞춰 디자인할 수 있는 LLM용 디자인 시스템 가이드에요.<br>
-        <strong class="marker-underline">'어두운 배경에 적합한 에쓰푸드 로고를 넣어 줘' 라고 하면 자동으로 설정된 로고를 넣어주기도 한답니다.</strong><br>
+        S-Red를 기반으로 컬러, 폰트, 컴포넌트, 문서 작성 양식까지 담은 LLM용 디자인 시스템 가이드에요.<br>
         <strong>워드를 만들 때도, 파워포인트를 만들 때도 적용할 수 있어요.</strong>
       </div>
       <div class="design-system-board">
@@ -561,8 +681,8 @@ button{font-family:inherit;cursor:pointer;}
             <div class="design-card-copy">단백질·육가공 전문 기업의 에너지와 장인 정신, 안전한 품질감을 함께 보여주는 방향입니다.</div>
             <div class="design-value-list">
               <div class="design-value"><strong>Vitality</strong><span>S-Red 기반의 건강한 힘과 활력</span></div>
-              <div class="design-value"><strong>Warmth</strong><span>Cream Gold 기반의 식탁의 온기</span></div>
-              <div class="design-value"><strong>Trust</strong><span>BG Dark 기반의 정돈된 구조와 신뢰</span></div>
+              <div class="design-value"><strong>Warmth</strong><span>Cream Gold 기반의 자연 재료와 식탁의 온기</span></div>
+              <div class="design-value"><strong>Trust</strong><span>BG Dark 기반의 정돈된 구조와 품질 신뢰</span></div>
             </div>
           </div>
           <div class="design-core-cell">
@@ -574,17 +694,17 @@ button{font-family:inherit;cursor:pointer;}
               <div class="palette-swatch" style="background:#2B2B2B;">Dark<br>#2B2B2B</div>
               <div class="palette-swatch light" style="background:#DFBA5E;">Gold Light<br>#DFBA5E</div>
             </div>
-            <div class="design-card-copy">Gold Light는 CTA와 다크 배경 위 강조 텍스트에 사용하고, Semantic 색상은 상태 표시에만 사용합니다.</div>
+            <div class="design-card-copy">Gray-100(#EAE3D9)은 표 헤더와 구분선에, Semantic 색상은 완료·오류·안내 같은 상태 표시에만 사용합니다.</div>
           </div>
           <div class="design-core-cell">
             <div class="design-card-kicker">FONT STYLE</div>
             <div class="design-card-title">매체별 기본 폰트</div>
             <div class="font-stack">
               <div class="font-row">기본 폰트<strong>워드/PPT: 맑은 고딕 · Calibri<br>웹: Noto Sans KR · Noto Sans</strong></div>
-              <div class="font-row">제목 스타일<strong>H1 36px · H2 28px · 600-700</strong></div>
-              <div class="font-row">본문 스타일<strong>Body 14px · Body LG 16px · 행간 1.7+</strong></div>
+              <div class="font-row">워드 스케일<strong>제목 1 22pt · 본문 11pt · 캡션 9pt</strong></div>
+              <div class="font-row">PPT 스케일<strong>슬라이드 제목 32pt · 본문 16pt · 캡션 11pt</strong></div>
             </div>
-            <div class="design-card-copy">제목은 굵게, 본문은 충분한 행간으로 읽기 쉽게 잡습니다.</div>
+            <div class="design-card-copy">문서와 장표는 Office 호환 폰트를 기본으로 두고, 웹은 Noto Sans KR 기준으로 표시합니다.</div>
           </div>
           <div class="design-core-cell">
             <div class="design-card-kicker">CARD &amp; BOX</div>
@@ -595,12 +715,18 @@ button{font-family:inherit;cursor:pointer;}
               <div class="card-rule xl">대형 박스<br>20px</div>
             </div>
             <div class="design-card-copy">모든 박스와 카드는 Radius를 적용하고, 테두리는 Gray-200, 그림자는 낮고 정돈되게 사용합니다.</div>
+            <div class="design-card-kicker" style="margin-top:18px;">DOCUMENT FORMAT</div>
+            <div class="design-card-title" style="font-size:17px;">Word · PowerPoint 양식</div>
+            <div class="design-card-copy">
+              워드는 보고서·기획서의 기본 레이아웃과 T&amp;M을 맞춰줍니다.<br>
+              파워포인트 역시 표지, 본문, 마무리 장표에 따라 기본 구조를 맞추고, 간단한 서식을 자동 적용합니다.
+            </div>
           </div>
           </div>
           <div class="design-download-card">
             <div>
               <div style="font-size:18px;font-weight:700;color:#fff;">디자인 시스템 받기</div>
-              <div style="font-size:13px;line-height:1.6;color:rgba(255,255,255,.6);margin-top:6px;">톤앤매너, 컬러, 타이포그래피, Radius, 컴포넌트 규칙을 담은 LLM용 가이드 문서입니다.</div>
+              <div style="font-size:13px;line-height:1.6;color:rgba(255,255,255,.6);margin-top:6px;">톤앤매너, 컬러, 타이포그래피, Word/PPT 작성 양식을 담은 LLM용 가이드 문서입니다.</div>
             </div>
             <button onclick="dlSystem()" class="btn-gold">↓ 디자인 시스템 마크다운 받기</button>
           </div>
@@ -610,9 +736,9 @@ button{font-family:inherit;cursor:pointer;}
         <div class="orb" style="font-size:11px;letter-spacing:.14em;color:#DFBA5E;font-weight:700;">EXAMPLE PROMPTS</div>
         <div style="margin-top:8px;font-size:17px;font-weight:800;color:#fff;">이렇게 요청해보세요</div>
         <div class="prompt-example-grid">
-          <div class="prompt-example">파워포인트에 디자인 시스템을 적용해줘.</div>
-          <div class="prompt-example">이 보고서를 SFOOD 디자인 시스템 기준으로 정리해줘.</div>
-          <div class="prompt-example">첨부한 웹페이지를 에쓰푸드 브랜드 톤으로 다시 디자인해줘.</div>
+          <div class="prompt-example">첨부한 워드 문서를 SFOOD 디자인 시스템 기준으로 다시 정리해줘. 본문 구조와 표 양식도 가이드에 맞춰줘.</div>
+          <div class="prompt-example">이 초안 PPT를 SFOOD 디자인 시스템에 맞게 다듬어줘. 표지, 본문, 마무리 장표 흐름이 자연스럽게 보이도록 정리해줘.</div>
+          <div class="prompt-example">아래 표 데이터를 SFOOD 보고서 톤앤매너에 맞춰 설명하고, 표와 숫자 표기도 디자인 시스템 기준으로 정리해줘.</div>
         </div>
       </div>
     </section>
@@ -661,7 +787,7 @@ button{font-family:inherit;cursor:pointer;}
         <h2 style="margin:10px 0 0;font-size:clamp(26px,3.5vw,34px);font-weight:900;color:#fff;letter-spacing:-.01em;">⚠ 보안 가이드라인</h2>
         <div style="margin-top:18px;max-width:680px;font-size:15px;line-height:1.75;color:rgba(255,255,255,.72);">
           보안은 무엇보다 중요합니다.<br>
-          특히 개인 계정으로 사용 시 우리가 올리는 파일들은 LLM의 학습자료로 유출될 수 있습니다.<br>
+          특히 개인 계정으로 사용 시 우리가 올리는 파일들은 유출되어 LLM의 학습자료로 사용될 수 있습니다.<br>
           회사의 중요한 정보들을 LLM에게 직접 업로드하지 말아 주세요.<br>
           보다 자세한 사항은 아래의 링크를 클릭하여 확인해보세요!
         </div>
@@ -759,6 +885,81 @@ button{font-family:inherit;cursor:pointer;}
 </div><!-- /#top -->
 
 <script>
+/* ── starfield: one canvas instead of many CSS gradient layers ── */
+(function() {
+  const canvas = document.getElementById('starfieldCanvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d', { alpha: true });
+  const staticLayer = document.createElement('canvas');
+  const staticCtx = staticLayer.getContext('2d', { alpha: true });
+  let w = 0, h = 0, dpr = 1, staticStars = [], twinkleA = [], twinkleB = [];
+
+  function rnd(seed) {
+    let s = seed;
+    return function() {
+      s = (s * 1664525 + 1013904223) >>> 0;
+      return s / 4294967296;
+    };
+  }
+  function makeStars(count, rand, sizeMin, sizeMax, alphaMin, alphaMax) {
+    const arr = [];
+    for (let i = 0; i < count; i++) {
+      const warm = rand() > .86;
+      const red = rand() > .94;
+      arr.push({
+        x: rand() * w,
+        y: rand() * h,
+        r: sizeMin + rand() * (sizeMax - sizeMin),
+        a: alphaMin + rand() * (alphaMax - alphaMin),
+        hue: red ? '228,118,116' : (warm ? '223,186,94' : '255,255,255'),
+        phase: rand() * Math.PI * 2
+      });
+    }
+    return arr;
+  }
+  function drawStar(target, s, alphaScale) {
+    target.beginPath();
+    target.fillStyle = 'rgba(' + s.hue + ',' + Math.max(0, Math.min(1, s.a * alphaScale)) + ')';
+    target.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+    target.fill();
+  }
+  function rebuild() {
+    dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+    w = Math.max(1, Math.ceil(window.innerWidth));
+    h = Math.max(1, Math.ceil(window.innerHeight));
+    canvas.width = Math.ceil(w * dpr);
+    canvas.height = Math.ceil(h * dpr);
+    staticLayer.width = canvas.width;
+    staticLayer.height = canvas.height;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    staticCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+    const area = w * h;
+    const density = Math.min(1.35, Math.max(.78, area / (1440 * 900)));
+    const rand = rnd(7319);
+    staticStars = makeStars(Math.round(1550 * density), rand, .42, 1.35, .22, .88);
+    twinkleA = makeStars(Math.round(150 * density), rand, .85, 2.15, .45, 1);
+    twinkleB = makeStars(Math.round(150 * density), rand, .75, 1.9, .38, .9);
+
+    staticCtx.clearRect(0, 0, w, h);
+    staticStars.forEach(function(s) { drawStar(staticCtx, s, 1); });
+  }
+  function frame(now) {
+    ctx.clearRect(0, 0, w, h);
+    ctx.drawImage(staticLayer, 0, 0, w, h);
+    twinkleA.forEach(function(s) {
+      drawStar(ctx, s, .35 + Math.pow((Math.sin(now * .0032 + s.phase) + 1) / 2, 2.4) * .95);
+    });
+    twinkleB.forEach(function(s) {
+      drawStar(ctx, s, .25 + Math.pow((Math.sin(now * .00135 + s.phase) + 1) / 2, 1.8) * .85);
+    });
+    requestAnimationFrame(frame);
+  }
+  rebuild();
+  requestAnimationFrame(frame);
+  window.addEventListener('resize', rebuild);
+})();
+
 /* ── utils ── */
 function navTo(id) {
   const el = document.getElementById(id);
